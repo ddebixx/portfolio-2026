@@ -110,3 +110,97 @@
   color: var(--color-muted-foreground);
   font-style: italic;
 }
+
+.projects-description {
+  font-family: var(--font-commit-mono), monospace;
+  color: var(--color-muted-foreground);
+  line-height: 1.6;
+}
+
+.projects-description p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+}
+
+.projects-description p:last-child {
+  margin-bottom: 0;
+}
+
+.projects-description h1,
+.projects-description h2,
+.projects-description h3,
+.projects-description h4,
+.projects-description h5,
+.projects-description h6 {
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--color-foreground);
+  line-height: 1.2;
+}
+
+.projects-description h1 {
+  font-size: 1.5rem;
+}
+
+.projects-description h2 {
+  font-size: 1.25rem;
+}
+
+.projects-description h3 {
+  font-size: 1.125rem;
+}
+
+.projects-description h4,
+.projects-description h5,
+.projects-description h6 {
+  font-size: 1rem;
+}
+
+.projects-description a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.projects-description a:hover {
+  text-decoration: none;
+}
+
+.projects-description ul,
+.projects-description ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.projects-description li {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.projects-description strong,
+.projects-description b {
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.projects-description em,
+.projects-description i {
+  font-style: italic;
+}
+
+.projects-description code {
+  font-family: var(--font-commit-mono), monospace;
+  font-size: 0.875em;
+  background-color: var(--color-muted);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  color: var(--color-foreground);
+}
+
+.projects-description blockquote {
+  margin: 0.75rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border);
+  color: var(--color-muted-foreground);
+  font-style: italic;
+}

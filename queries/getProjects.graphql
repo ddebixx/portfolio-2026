@@ -1,0 +1,15 @@
+query GetProjects {
+  projects {
+    projectTitle
+    projectDescription {
+      html
+    }
+    techStack
+    projectPhoto {
+      url
+    }
+    projectsPhotos {
+      url
+    }
+  }
+}

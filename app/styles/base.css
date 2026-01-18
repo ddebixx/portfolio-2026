@@ -2,8 +2,13 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-commit-mono), monospace;
+  }
+
+  ::selection {
+    @apply bg-primary text-primary-foreground;
   }
 }
