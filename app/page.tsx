@@ -2,6 +2,7 @@ import { ExperienceSection } from "@/components/experience-section/ExperienceSec
 import { HeroSection } from "@/components/portfolio-hero/HeroSection";
 import { ProjectsSection } from "@/components/projects-section/ProjectsSection";
 import { TechnologiesSection } from "@/components/technologies-section/TechnologiesSection";
+import { ContactSection } from "@/components/contact-section/ContactSection";
 
 export default async function Home() {
   return (
@@ -11,6 +12,7 @@ export default async function Home() {
         <ExperienceSection />
         <ProjectsSection />
         <TechnologiesSection />
+        <ContactSection />
       </main>
     </div>
   );
