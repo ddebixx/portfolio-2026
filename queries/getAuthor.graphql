@@ -1,0 +1,9 @@
+query GetAuthor {
+  authors {
+    authorDescription
+    name
+    socials {
+      html
+    }
+  }
+}

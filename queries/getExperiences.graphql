@@ -1,0 +1,12 @@
+query MyQuery {
+  experiences {
+    companyInfo {
+      html
+    }
+    companyLogo {
+      url
+    }
+    workdateFrom
+    workdateTo
+  }
+}

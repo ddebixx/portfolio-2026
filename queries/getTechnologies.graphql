@@ -1,0 +1,6 @@
+query GetTechnologies {
+  techstacks {
+    technologyDescription
+    technologyTitle
+  }
+}
