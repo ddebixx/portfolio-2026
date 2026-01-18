@@ -1,0 +1,14 @@
+query GetPosts {
+  posts {
+    content {
+      html
+    }
+    author {
+      name
+      createdAt
+    }
+    coverPhoto {
+      url
+    }
+  }
+}
