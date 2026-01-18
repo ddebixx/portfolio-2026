@@ -15,10 +15,12 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  */
 type Documents = {
     "query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}": typeof types.GetAuthorDocument,
+    "query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}": typeof types.MyQueryDocument,
     "query GetPosts {\n  posts {\n    content {\n      html\n    }\n    author {\n      name\n      createdAt\n    }\n    coverPhoto {\n      url\n    }\n  }\n}": typeof types.GetPostsDocument,
 };
 const documents: Documents = {
     "query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}": types.GetAuthorDocument,
+    "query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}": types.MyQueryDocument,
     "query GetPosts {\n  posts {\n    content {\n      html\n    }\n    author {\n      name\n      createdAt\n    }\n    coverPhoto {\n      url\n    }\n  }\n}": types.GetPostsDocument,
 };
 
@@ -40,6 +42,10 @@ export function graphql(source: string): unknown;
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function graphql(source: "query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}"): (typeof documents)["query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}"): (typeof documents)["query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

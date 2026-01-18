@@ -27,8 +27,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${commitMonoRegular.variable} ${commitMonoBold.variable} antialiased`}
-      >
+        className={`${commitMonoRegular.variable} ${commitMonoBold.variable} antialiased`}>
         {children}
       </body>
     </html>

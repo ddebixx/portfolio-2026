@@ -1,0 +1,112 @@
+
+.social-links p { 
+  color: var(--color-muted-foreground);
+}
+
+.social-links p > a {
+  color: var(--color-primary);
+}
+
+.auto-grid-borders > * {
+  border: 1px solid var(--color-border);
+  padding: 1rem;
+}
+
+.terminal-prompt {
+  color: oklch(0.7 0.15 145);
+  margin-right: 0.5rem;
+}
+
+.experience-description {
+  font-family: var(--font-commit-mono), monospace;
+  color: var(--color-muted-foreground);
+  line-height: 1.6;
+}
+
+.experience-description p {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.875rem;
+}
+
+.experience-description p:last-child {
+  margin-bottom: 0;
+}
+
+.experience-description h1,
+.experience-description h2,
+.experience-description h3,
+.experience-description h4,
+.experience-description h5,
+.experience-description h6 {
+  font-weight: 700;
+  margin: 1rem 0 0.5rem 0;
+  color: var(--color-foreground);
+  line-height: 1.2;
+}
+
+.experience-description h1 {
+  font-size: 1.5rem;
+}
+
+.experience-description h2 {
+  font-size: 1.25rem;
+}
+
+.experience-description h3 {
+  font-size: 1.125rem;
+}
+
+.experience-description h4,
+.experience-description h5,
+.experience-description h6 {
+  font-size: 1rem;
+}
+
+.experience-description a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.experience-description a:hover {
+  text-decoration: none;
+}
+
+.experience-description ul,
+.experience-description ol {
+  margin: 0.75rem 0;
+  padding-left: 1.5rem;
+}
+
+.experience-description li {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+}
+
+.experience-description strong,
+.experience-description b {
+  font-weight: 700;
+  color: var(--color-foreground);
+}
+
+.experience-description em,
+.experience-description i {
+  font-style: italic;
+}
+
+.experience-description code {
+  font-family: var(--font-commit-mono), monospace;
+  font-size: 0.875em;
+  background-color: var(--color-muted);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  color: var(--color-foreground);
+}
+
+.experience-description blockquote {
+  margin: 0.75rem 0;
+  padding-left: 1rem;
+  border-left: 2px solid var(--color-border);
+  color: var(--color-muted-foreground);
+  font-style: italic;
+}
