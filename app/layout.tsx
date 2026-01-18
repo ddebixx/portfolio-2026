@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/sonner";
+import { Preloader } from "@/components/shared/Preloader";
 
 const commitMonoRegular = localFont({
   src: "../public/fonts/CommitMono-400-Regular.otf",
@@ -29,6 +30,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${commitMonoRegular.variable} ${commitMonoBold.variable} antialiased`}>
+        <Preloader />
         {children}
         <Toaster />
       </body>

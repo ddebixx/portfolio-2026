@@ -10,6 +10,45 @@
 .auto-grid-borders > * {
   border: 1px solid var(--color-border);
   padding: 1rem;
+  margin-top: -1px;
+}
+.auto-grid-borders > *:first-child {
+  margin-top: 0;
+}
+
+.technologies-list > .technologies-item {
+  margin-top: -1px;
+  margin-left: -1px;
+}
+
+.technologies-list > .technologies-item:first-child {
+  margin-top: 0;
+  margin-left: 0;
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .technologies-list > .technologies-item:first-child,
+  .technologies-list > .technologies-item:nth-child(odd) {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .technologies-list > .technologies-item:nth-child(3n+1) {
+    margin-left: 0;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .technologies-list > .technologies-item:nth-child(-n+2) {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .technologies-list > .technologies-item:nth-child(-n+3) {
+    margin-top: 0;
+  }
 }
 
 .terminal-prompt {

@@ -6,7 +6,7 @@ export const ExperienceSection = async () => {
     const experiences = await getExperiences();
 
     return (
-        <section className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
+        <section id="experience" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
             <h2 className="text-base sm:text-lg font-commit-mono-bold font-mono">Experience</h2>
             <div className="experience-timeline relative">
                 {experiences?.experiences?.map((experience, index) => (
