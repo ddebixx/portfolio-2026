@@ -1,4 +1,4 @@
-import { getExperiences } from "@/fetchers/experiences/getExperiences";
+import { getExperiences } from "@/fetchers/getExperiences";
 import Image from "next/image";
 import "../../app/styles/components.css";
 

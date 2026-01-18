@@ -28,7 +28,7 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
                 alt={project.projectTitle}
                 width={400}
                 height={300}
-                className="w-full h-40 sm:h-48 object-cover   mb-3 sm:mb-4"
+                className="w-full rounded h-40 sm:h-48 object-cover   mb-3 sm:mb-4"
               />
               <h3 className="text-xs sm:text-sm font-commit-mono-bold font-mono mb-2">
                 {project.projectTitle}
@@ -71,7 +71,7 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
                 alt={project.projectTitle}
                 width={200}
                 height={150}
-                className="w-full sm:w-48 h-32 sm:h-32 object-cover   flex-shrink-0"
+                className="w-full rounded sm:w-48 h-32 sm:h-32 object-cover   flex-shrink-0"
               />
               <div className="flex-1">
                 <h3 className="text-xs sm:text-sm font-commit-mono-bold font-mono mb-2">

@@ -1,4 +1,4 @@
-import { getAuthor } from "@/fetchers/author/getAuthor";
+import { getAuthor } from "@/fetchers/getAuthor";
 
 export const HeroSection = async () => {
   const author = await getAuthor();

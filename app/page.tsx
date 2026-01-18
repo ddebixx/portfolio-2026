@@ -1,6 +1,7 @@
 import { ExperienceSection } from "@/components/experience-section/ExperienceSection";
 import { HeroSection } from "@/components/portfolio-hero/HeroSection";
 import { ProjectsSection } from "@/components/projects-section/ProjectsSection";
+import { TechnologiesSection } from "@/components/technologies-section/TechnologiesSection";
 
 export default async function Home() {
   return (
@@ -9,6 +10,7 @@ export default async function Home() {
         <HeroSection />
         <ExperienceSection />
         <ProjectsSection />
+        <TechnologiesSection />
       </main>
     </div>
   );

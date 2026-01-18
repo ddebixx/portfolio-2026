@@ -1,4 +1,4 @@
-import { getProjects } from "@/fetchers/projects/getProjects";
+import { getProjects } from "@/fetchers/getProjects";
 import { ProjectsView } from "./ProjectsView";
 
 export const ProjectsSection = async () => {
