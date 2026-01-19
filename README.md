@@ -112,7 +112,7 @@ pnpm install
 Create a `.env.local` file in the root directory:
 
 ```env
-# Hygraph GraphQL Endpoint (optional - currently hardcoded)
+# Hygraph GraphQL Endpoint
 # HYGRAPH_ENDPOINT=your_endpoint
 
 # Resend API Key (for contact form)
