@@ -1,21 +1,5 @@
 # Portfolio 2026
 
-## Getting Started
-
-First, run the development server:
-
-- **Terminal-Inspired UI**: Command-line style navigation with terminal prompts
-- **Dark Theme**: Always-on dark mode with custom scrollbars
-- **Interactive Navigation**: Terminal-style search bar to navigate between sections
-- **Preloader**: Animated loading screen with progress indicators
-- **Project Showcase**: Grid and list views for projects with detailed modals
-- **Experience Timeline**: Visual timeline of work experience
-- **Tech Stack Display**: Interactive technology cards
-- **Contact Form**: Functional contact form with email integration
-- **Responsive Design**: Fully responsive across all device sizes
-- **Image Optimization**: Automatic image preloading and optimization
-- **Skeleton Loading States**: Smooth loading states for better UX
-
 ## 📸 Screenshots
 
 > **Note**: Add your screenshots to the `public/screenshots/` directory and update the paths below.
