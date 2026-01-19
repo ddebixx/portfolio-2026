@@ -1,11 +1,13 @@
 "use client";
 
-import * as React from "react";
 import { twMerge } from "tailwind-merge";
 import { Progress } from "@/components/ui/progress";
+import { useState, useEffect } from "react";
 
 interface PreloaderProps {
   className?: string;
+  onComplete?: () => void;
+  imageUrls?: string[];
 }
 
 interface LoadingStep {
@@ -15,57 +17,72 @@ interface LoadingStep {
 }
 
 const loadingSteps: LoadingStep[] = [
-  { id: "hero", label: "Hero", endpoint: "/api/hero" },
-  { id: "experience", label: "Experience", endpoint: "/api/experience" },
-  { id: "projects", label: "Projects", endpoint: "/api/projects" },
-  { id: "technologies", label: "Technologies", endpoint: "/api/technologies" },
-  { id: "contact", label: "Contact", endpoint: "/api/contact" },
+  { id: "init", label: "Initializing", endpoint: "" },
+  { id: "data", label: "Loading content", endpoint: "" },
+  { id: "images", label: "Preparing images", endpoint: "" },
+  { id: "complete", label: "Almost ready", endpoint: "" },
 ];
 
-export const Preloader = ({ className }: PreloaderProps) => {
-  const [progress, setProgress] = React.useState(0);
-  const [currentStep, setCurrentStep] = React.useState(0);
-  const [status, setStatus] = React.useState<"loading" | "success">("loading");
-  const [isVisible, setIsVisible] = React.useState(true);
+function preloadImage(url: string): Promise<void> {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve();
+    img.onerror = reject;
+    img.src = url;
+  });
+}
 
-  React.useEffect(() => {
-    function simulateLoading() {
-      const totalSteps = loadingSteps.length;
-      const progressPerStep = 100 / totalSteps;
-      let currentProgress = 0;
-      let stepIndex = 0;
+export const Preloader = ({ className, onComplete, imageUrls = [] }: PreloaderProps) => {
+  const [progress, setProgress] = useState(0);
+  const [currentStep, setCurrentStep] = useState(0);
+  const [status, setStatus] = useState<"loading" | "success">("loading");
+  const [isVisible, setIsVisible] = useState(true);
 
-      function loadStep() {
-        if (stepIndex >= totalSteps) {
-          setStatus("success");
-          setTimeout(() => {
-            setIsVisible(false);
-          }, 1500);
-          return;
+  useEffect(() => {
+    async function preloadImages() {
+      try {
+        setCurrentStep(0);
+        setProgress(10);
+
+        setCurrentStep(1);
+        setProgress(30);
+
+        setCurrentStep(2);
+        setProgress(50);
+
+        if (imageUrls.length > 0) {
+          const criticalImages = imageUrls.slice(0, Math.min(10, imageUrls.length));
+          
+          await Promise.allSettled(
+            criticalImages.map((url) => preloadImage(url))
+          );
+
+          setProgress(80);
+          
+          Promise.allSettled(
+            imageUrls.slice(criticalImages.length).map((url) => preloadImage(url))
+          ).catch(() => {});
         }
 
-        setCurrentStep(stepIndex);
-        const targetProgress = (stepIndex + 1) * progressPerStep;
+        setCurrentStep(3);
+        setProgress(95);
 
-        const stepInterval = setInterval(() => {
-          currentProgress += 1.5;
-          if (currentProgress >= targetProgress) {
-            currentProgress = targetProgress;
-            setProgress(currentProgress);
-            clearInterval(stepInterval);
-            stepIndex++;
-            setTimeout(loadStep, 300);
-          } else {
-            setProgress(currentProgress);
-          }
-        }, 20);
+        setProgress(100);
+        setStatus("success");
+
+        setTimeout(() => {
+          setIsVisible(false);
+          onComplete?.();
+        }, 300);
+      } catch (error) {
+        console.error("Preload error:", error);
+        setIsVisible(false);
+        onComplete?.();
       }
-
-      loadStep();
     }
 
-    simulateLoading();
-  }, []);
+    preloadImages();
+  }, [onComplete, imageUrls]);
 
   if (!isVisible) {
     return null;
@@ -93,12 +110,9 @@ export const Preloader = ({ className }: PreloaderProps) => {
 
             {status === "loading" && currentStepData && (
               <>
-                <div className="pl-6 flex flex-col gap-2">
+                <div className="pl-6">
                   <div className="text-xs sm:text-sm font-commit-mono-regular text-muted-foreground">
-                    Fetching {currentStepData.label.toLowerCase()}...
-                  </div>
-                  <div className="text-xs font-commit-mono-regular text-muted-foreground/70">
-                    {currentStepData.endpoint}
+                    {currentStepData.label}...
                   </div>
                 </div>
                 <div className="pl-6">
@@ -134,7 +148,7 @@ export const Preloader = ({ className }: PreloaderProps) => {
                   STATUS 200 OK
                 </div>
                 <div className="text-xs sm:text-sm font-commit-mono-regular text-muted-foreground">
-                  Portfolio loaded successfully
+                  Ready
                 </div>
                 <div className="mt-2 flex flex-col gap-1">
                   {loadingSteps.map((step) => (

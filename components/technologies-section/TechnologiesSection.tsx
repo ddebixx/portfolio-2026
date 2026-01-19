@@ -1,8 +1,10 @@
-import { getTechnologies } from "@/fetchers/getTechnologies";
+import type { GetTechnologiesQuery } from "@/types/graphql";
 
-export const TechnologiesSection = async () => {
-    const technologies = await getTechnologies();
-    
+interface TechnologiesSectionProps {
+  technologies: GetTechnologiesQuery | null;
+}
+
+export const TechnologiesSection = ({ technologies }: TechnologiesSectionProps) => {
     return (
         <section id="technologies" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
             <h2 className="text-base sm:text-lg font-commit-mono-bold font-mono">Techstack</h2>
