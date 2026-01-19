@@ -2,8 +2,6 @@
 
 ## 📸 Screenshots
 
-> **Note**: Add your screenshots to the `public/screenshots/` directory and update the paths below.
-
 <img width="1903" height="921" alt="image" src="https://github.com/user-attachments/assets/39ce01b8-673c-4bd1-a1bd-d790476303b3" />
 <img width="1906" height="917" alt="image" src="https://github.com/user-attachments/assets/4cf65b30-f30b-4b3f-902b-673f7bb77f2e" />
 <img width="1906" height="921" alt="image" src="https://github.com/user-attachments/assets/0b520bce-1d6f-4dc2-afb9-fa8c6fe86ee0" />
