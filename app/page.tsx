@@ -9,6 +9,7 @@ import { getAuthor } from "@/fetchers/getAuthor";
 import { getExperiences } from "@/fetchers/getExperiences";
 import { getProjects } from "@/fetchers/getProjects";
 import { getTechnologies } from "@/fetchers/getTechnologies";
+import { extractImageUrls } from "@/utils/extractImageUrls";
 
 export default async function Home() {
   const [author, experiences, projects, technologies] = await Promise.all([
@@ -18,30 +19,7 @@ export default async function Home() {
     getTechnologies(),
   ]);
 
-  const imageUrls: string[] = [];
-
-  if (experiences?.experiences) {
-    experiences.experiences.forEach((exp) => {
-      if (exp.companyLogo?.url) {
-        imageUrls.push(exp.companyLogo.url);
-      }
-    });
-  }
-
-  if (projects?.projects) {
-    projects.projects.forEach((project) => {
-      if (project.projectPhoto?.url) {
-        imageUrls.push(project.projectPhoto.url);
-      }
-      if (project.projectsPhotos) {
-        project.projectsPhotos.forEach((photo) => {
-          if (photo.url) {
-            imageUrls.push(photo.url);
-          }
-        });
-      }
-    });
-  }
+  const imageUrls = extractImageUrls(experiences, projects);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-black font-sans">

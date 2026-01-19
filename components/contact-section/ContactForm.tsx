@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { submitContactForm } from "@/lib/contact";
 
 interface ContactFormData {
   email: string;
@@ -28,20 +29,7 @@ export const ContactForm = () => {
 
   async function onSubmit(data: ContactFormData) {
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || "Failed to send message");
-      }
-
+      await submitContactForm(data);
       toast.success("Message sent successfully!");
       reset();
     } catch (error) {
