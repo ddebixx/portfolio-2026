@@ -160,7 +160,7 @@ export const Navbar = ({ className }: NavbarProps) => {
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverAnchor asChild>
           <div className="relative w-full">
-            <div className="flex items-center gap-2 border border-border bg-white dark:bg-black px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-sm focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
+            <div className="flex items-center gap-2 border border-border bg-black px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-sm focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
               <span className="terminal-prompt text-muted-foreground">$</span>
               <input
                 type="text"
