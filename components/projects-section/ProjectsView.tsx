@@ -22,13 +22,13 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
       <TabsContent value="grid" className="mt-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {projects?.map((project) => (
-            <div key={project.projectTitle} className="border border-border p-3 sm:p-4  -lg">
+            <div key={project.projectTitle} className="border border-border p-3 sm:p-4 flex flex-col -lg">
               <Image
                 src={project.projectPhoto.url}
                 alt={project.projectTitle}
                 width={400}
                 height={300}
-                className="w-full rounded h-40 sm:h-48 object-cover   mb-3 sm:mb-4"
+                className="w-full rounded h-40 sm:h-48 object-cover mb-3 sm:mb-4"
               />
               <h3 className="text-xs sm:text-sm font-commit-mono-bold font-mono mb-2">
                 {project.projectTitle}
@@ -46,10 +46,11 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
                   </Badge>
                 ))}
               </div>
+
               <ProjectInfoModal
                 project={project}
                 trigger={
-                  <Button variant="outline" className="w-full">
+                  <Button variant="outline" className="w-full mt-auto">
                     View Details
                   </Button>
                 }
@@ -64,16 +65,16 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
           {projects?.map((project) => (
             <div
               key={project.projectTitle}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 border border-border p-3 sm:p-4  -lg"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 border border-border p-3 sm:p-4 -lg"
             >
               <Image
                 src={project.projectPhoto.url}
                 alt={project.projectTitle}
                 width={200}
                 height={150}
-                className="w-full rounded sm:w-48 h-32 sm:h-32 object-cover   flex-shrink-0"
+                className="w-full rounded sm:w-48 h-32 sm:h-32 object-cover flex-shrink-0"
               />
-              <div className="flex-1">
+              <div className="flex-1 flex flex-col">
                 <h3 className="text-xs sm:text-sm font-commit-mono-bold font-mono mb-2">
                   {project.projectTitle}
                 </h3>
@@ -93,7 +94,7 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
                 <ProjectInfoModal
                   project={project}
                   trigger={
-                    <Button variant="outline" className="w-full sm:w-auto">
+                    <Button variant="outline" className="w-full sm:w-auto mt-auto">
                       View Details
                     </Button>
                   }

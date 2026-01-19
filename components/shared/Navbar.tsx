@@ -1,6 +1,6 @@
 "use client";
 
-import * as React from "react";
+import { useState, useRef, useEffect, useMemo, ChangeEvent, KeyboardEvent } from "react";
 import { twMerge } from "tailwind-merge";
 import {
   Popover,
@@ -54,12 +54,12 @@ interface NavbarProps {
 }
 
 export const Navbar = ({ className }: NavbarProps) => {
-  const [open, setOpen] = React.useState(false);
-  const [searchValue, setSearchValue] = React.useState("");
-  const [selectedSection, setSelectedSection] = React.useState<Section | null>(
+  const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [selectedSection, setSelectedSection] = useState<Section | null>(
     null
   );
-  const blurTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+  const blurTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   function handleSelectSection(section: Section) {
     if (blurTimeoutRef.current) {
@@ -88,7 +88,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     scrollToSection();
   }
 
-  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+  function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
     const value = e.target.value;
     
     if (selectedSection && value !== `navigate ${selectedSection.id}`) {
@@ -101,7 +101,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     }
   }
 
-  function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyDown(event: KeyboardEvent<HTMLInputElement>) {
     if (event.key === "Enter" && filteredSections.length > 0) {
       event.preventDefault();
       handleSelectSection(filteredSections[0]);
@@ -120,7 +120,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     }, 200);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     return () => {
       if (blurTimeoutRef.current) {
         clearTimeout(blurTimeoutRef.current);
@@ -128,7 +128,7 @@ export const Navbar = ({ className }: NavbarProps) => {
     };
   }, []);
 
-  const filteredSections = React.useMemo(() => {
+  const filteredSections = useMemo(() => {
     if (!searchValue.trim()) {
       return sections;
     }

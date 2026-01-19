@@ -1,10 +1,12 @@
-import { getExperiences } from "@/fetchers/getExperiences";
 import Image from "next/image";
 import "../../app/styles/components.css";
+import type { MyQueryQuery } from "@/types/graphql";
 
-export const ExperienceSection = async () => {
-    const experiences = await getExperiences();
+interface ExperienceSectionProps {
+  experiences: MyQueryQuery | null;
+}
 
+export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
     return (
         <section id="experience" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
             <h2 className="text-base sm:text-lg font-commit-mono-bold font-mono">Experience</h2>
@@ -12,7 +14,7 @@ export const ExperienceSection = async () => {
                 {experiences?.experiences?.map((experience, index) => (
                     <div 
                         key={experience.companyLogo.url} 
-                        className="experience-item relative pl-6 sm:pl-8 pb-6 sm:pb-8"
+                        className="experience-item relative pl-8 sm:pl-8 pb-6 sm:pb-8"
                     >
                         {index < (experiences.experiences?.length || 0) - 1 && (
                             <div className="absolute left-2 sm:left-3 top-8 bottom-0 w-px bg-border"></div>

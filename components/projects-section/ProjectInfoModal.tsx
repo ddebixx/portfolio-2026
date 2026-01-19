@@ -62,6 +62,16 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
             </Carousel>
           )}
 
+{project.techStack && project.techStack.length > 0 && (
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
+              {project.techStack.map((tech) => (
+                <Badge key={tech} variant="default">
+                  {tech}
+                </Badge>
+              ))}
+            </div>
+          )}
+
           {!project.projectsPhotos || project.projectsPhotos.length === 0 ? (
             <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
               <Image
@@ -80,15 +90,16 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
             }}
           />
 
-          {project.techStack && project.techStack.length > 0 && (
-            <div className="flex flex-wrap gap-1.5 sm:gap-2">
-              {project.techStack.map((tech) => (
-                <Badge key={tech} variant="default">
-                  {tech}
-                </Badge>
-              ))}
-            </div>
+          {project.projectIdea?.html && (
+            <div
+              className="projects-description text-xs sm:text-sm"
+              dangerouslySetInnerHTML={{
+                __html: project.projectIdea.html,
+              }}
+            />
           )}
+
+          
         </div>
       </DialogContent>
     </Dialog>
