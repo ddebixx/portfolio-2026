@@ -7,10 +7,6 @@
 <img width="1906" height="921" alt="image" src="https://github.com/user-attachments/assets/0b520bce-1d6f-4dc2-afb9-fa8c6fe86ee0" />
 
 
-
-
-
-
 ## 🛠️ Tech Stack
 
 ### Core
@@ -117,7 +113,7 @@ Create a `.env.local` file in the root directory:
 
 ```env
 # Hygraph GraphQL Endpoint (optional - currently hardcoded)
-# HYGRAPH_ENDPOINT=https://eu-central-1-shared-euc1-02.cdn.hygraph.com/content/clg6idcnc0tde01t3cvzvgg5l/master
+# HYGRAPH_ENDPOINT=your_endpoint
 
 # Resend API Key (for contact form)
 RESEND_API_KEY=your_resend_api_key

@@ -36,7 +36,7 @@
 @media (min-width: 640px) and (max-width: 767px) {
   .technologies-list > .technologies-item:first-child,
   .technologies-list > .technologies-item:nth-child(odd) {
-    margin-left: 0;
+    mrgin-left: 0;
   }
 }
 
