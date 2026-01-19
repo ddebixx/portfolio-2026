@@ -2,8 +2,8 @@ import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="auto-grid-borders grid grid-cols-1 sm:grid-cols-2 w-full max-w-4xl flex-col items-center justify-between py-8 px-4 sm:py-16 md:py-32 sm:px-8 md:px-16 bg-white dark:bg-black sm:items-start">
+    <div className="flex min-h-screen items-center justify-center font-sans">
+      <main className="auto-grid-borders grid grid-cols-1 sm:grid-cols-2 w-full max-w-4xl flex-col items-center justify-between py-8 px-4 sm:py-16 md:py-32 sm:px-8 md:px-16 sm:items-start">
         <section className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-2">

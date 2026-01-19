@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { GetProjectsQuery } from "@/types/graphql";
 
 interface ProjectInfoModalProps {
@@ -27,9 +28,21 @@ interface ProjectInfoModalProps {
 
 export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) => {
   const [open, setOpen] = useState(false);
+  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+
+  function handleOpenChange(newOpen: boolean) {
+    setOpen(newOpen);
+    if (newOpen) {
+      setLoadedImages(new Set());
+    }
+  }
+
+  function handleImageLoad(url: string) {
+    setLoadedImages((prev) => new Set(prev).add(url));
+  }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-3 sm:p-6">
         <DialogHeader>
@@ -40,18 +53,28 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
           {project.projectsPhotos && project.projectsPhotos.length > 0 && (
             <Carousel className="w-full">
               <CarouselContent>
-                {project.projectsPhotos.map((photo, index) => (
-                  <CarouselItem key={index}>
-                    <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
-                      <Image
-                        src={photo.url}
-                        alt={`${project.projectTitle} - Image ${index + 1}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  </CarouselItem>
-                ))}
+                {project.projectsPhotos.map((photo, index) => {
+                  const isLoaded = loadedImages.has(photo.url);
+                  return (
+                    <CarouselItem key={index}>
+                      <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
+                        {!isLoaded && (
+                          <Skeleton className="absolute inset-0 w-full h-full" />
+                        )}
+                        <Image
+                          src={photo.url}
+                          alt={`${project.projectTitle} - Image ${index + 1}`}
+                          fill
+                          className={`object-cover transition-opacity duration-300 ${
+                            isLoaded ? "opacity-100" : "opacity-0"
+                          }`}
+                          onLoad={() => handleImageLoad(photo.url)}
+                          onLoadingComplete={() => handleImageLoad(photo.url)}
+                        />
+                      </div>
+                    </CarouselItem>
+                  );
+                })}
               </CarouselContent>
               {project.projectsPhotos.length > 1 && (
                 <>
@@ -74,30 +97,51 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
 
           {!project.projectsPhotos || project.projectsPhotos.length === 0 ? (
             <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
+              {!loadedImages.has(project.projectPhoto.url) && (
+                <Skeleton className="absolute inset-0 w-full h-full" />
+              )}
               <Image
                 src={project.projectPhoto.url}
                 alt={project.projectTitle}
                 fill
-                className="object-cover"
+                className={`object-cover transition-opacity duration-300 ${
+                  loadedImages.has(project.projectPhoto.url) ? "opacity-100" : "opacity-0"
+                }`}
+                onLoad={() => handleImageLoad(project.projectPhoto.url)}
+                onLoadingComplete={() => handleImageLoad(project.projectPhoto.url)}
               />
             </div>
           ) : null}
 
-          <div
-            className="projects-description text-xs sm:text-sm"
-            dangerouslySetInnerHTML={{
-              __html: project.projectDescription?.html || "",
-            }}
-          />
+          {project.projectDescription?.html ? (
+            <div
+              className="projects-description text-xs sm:text-sm"
+              dangerouslySetInnerHTML={{
+                __html: project.projectDescription.html,
+              }}
+            />
+          ) : (
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-3/4" />
+            </div>
+          )}
 
-          {project.projectIdea?.html && (
+          {project.projectIdea?.html ? (
             <div
               className="projects-description text-xs sm:text-sm"
               dangerouslySetInnerHTML={{
                 __html: project.projectIdea.html,
               }}
             />
-          )}
+          ) : project.projectIdea ? (
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-full" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          ) : null}
 
           
         </div>
