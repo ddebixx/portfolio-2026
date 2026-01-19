@@ -2,7 +2,7 @@
 
 import { twMerge } from "tailwind-merge";
 import { Progress } from "@/components/ui/progress";
-import { useState, useEffect } from "react";
+import { usePreloader, loadingSteps } from "@/hooks/usePreloader";
 
 interface PreloaderProps {
   className?: string;
@@ -10,79 +10,15 @@ interface PreloaderProps {
   imageUrls?: string[];
 }
 
-interface LoadingStep {
-  id: string;
-  label: string;
-  endpoint: string;
-}
-
-const loadingSteps: LoadingStep[] = [
-  { id: "init", label: "Initializing", endpoint: "" },
-  { id: "data", label: "Loading content", endpoint: "" },
-  { id: "complete", label: "Ready", endpoint: "" },
-];
-
-function preloadImage(url: string): Promise<void> {
-  return new Promise((resolve, reject) => {
-    const img = new Image();
-    img.onload = () => resolve();
-    img.onerror = reject;
-    img.src = url;
-  });
-}
-
 export const Preloader = ({ className, onComplete, imageUrls = [] }: PreloaderProps) => {
-  const [progress, setProgress] = useState(0);
-  const [currentStep, setCurrentStep] = useState(0);
-  const [status, setStatus] = useState<"loading" | "success">("loading");
-  const [isVisible, setIsVisible] = useState(true);
-
-  useEffect(() => {
-    async function preloadImages() {
-      try {
-        setCurrentStep(0);
-        setProgress(20);
-
-        await new Promise((resolve) => setTimeout(resolve, 400));
-
-        setCurrentStep(1);
-        setProgress(60);
-
-        await new Promise((resolve) => setTimeout(resolve, 400));
-
-        setCurrentStep(2);
-        setProgress(100);
-        setStatus("success");
-
-        if (imageUrls.length > 0) {
-          Promise.allSettled(
-            imageUrls.map((url) => preloadImage(url))
-          ).catch(() => {});
-        }
-
-        await new Promise((resolve) => setTimeout(resolve, 500));
-
-        setIsVisible(false);
-        onComplete?.();
-      } catch (error) {
-        console.error("Preload error:", error);
-        setIsVisible(false);
-        onComplete?.();
-      }
-    }
-
-    const timer = setTimeout(() => {
-      preloadImages();
-    }, 100);
-
-    return () => clearTimeout(timer);
-  }, [onComplete, imageUrls]);
+  const { progress, currentStep, status, isVisible, currentStepData } = usePreloader({
+    onComplete,
+    imageUrls,
+  });
 
   if (!isVisible) {
     return null;
   }
-
-  const currentStepData = loadingSteps[currentStep];
 
   return (
     <div

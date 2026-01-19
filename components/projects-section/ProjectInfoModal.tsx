@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Image from "next/image";
 import {
   Dialog,
@@ -17,28 +17,24 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { useImageLoader } from "@/hooks/useImageLoader";
 import type { GetProjectsQuery } from "@/types/graphql";
 
 interface ProjectInfoModalProps {
   project: GetProjectsQuery["projects"][0];
-  trigger: React.ReactNode;
+  trigger: ReactNode;
 }
 
 export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) => {
   const [open, setOpen] = useState(false);
-  const [loadedImages, setLoadedImages] = useState<Set<string>>(new Set());
+  const { handleImageLoad, resetLoadedImages, isImageLoaded } = useImageLoader();
 
   function handleOpenChange(newOpen: boolean) {
     setOpen(newOpen);
     if (newOpen) {
-      setLoadedImages(new Set());
+      resetLoadedImages();
     }
-  }
-
-  function handleImageLoad(url: string) {
-    setLoadedImages((prev) => new Set(prev).add(url));
   }
 
   return (
@@ -54,7 +50,7 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
             <Carousel className="w-full">
               <CarouselContent>
                 {project.projectsPhotos.map((photo, index) => {
-                  const isLoaded = loadedImages.has(photo.url);
+                  const isLoaded = isImageLoaded(photo.url);
                   return (
                     <CarouselItem key={index}>
                       <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
@@ -97,7 +93,7 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
 
           {!project.projectsPhotos || project.projectsPhotos.length === 0 ? (
             <div className="relative w-full aspect-[9/16] sm:aspect-video md:aspect-video rounded-lg overflow-hidden">
-              {!loadedImages.has(project.projectPhoto.url) && (
+              {!isImageLoaded(project.projectPhoto.url) && (
                 <Skeleton className="absolute inset-0 w-full h-full" />
               )}
               <Image
@@ -105,7 +101,7 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
                 alt={project.projectTitle}
                 fill
                 className={`object-cover transition-opacity duration-300 ${
-                  loadedImages.has(project.projectPhoto.url) ? "opacity-100" : "opacity-0"
+                  isImageLoaded(project.projectPhoto.url) ? "opacity-100" : "opacity-0"
                 }`}
                 onLoad={() => handleImageLoad(project.projectPhoto.url)}
                 onLoadingComplete={() => handleImageLoad(project.projectPhoto.url)}
