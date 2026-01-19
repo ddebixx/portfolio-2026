@@ -17,14 +17,14 @@ type Documents = {
     "query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}": typeof types.GetAuthorDocument,
     "query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}": typeof types.MyQueryDocument,
     "query GetPosts {\n  posts {\n    content {\n      html\n    }\n    author {\n      name\n      createdAt\n    }\n    coverPhoto {\n      url\n    }\n  }\n}": typeof types.GetPostsDocument,
-    "query GetProjects {\n  projects {\n    projectTitle\n    projectDescription {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}": typeof types.GetProjectsDocument,
+    "query GetProjects {\n  projects(orderBy: publishedAt_DESC) {\n    projectTitle\n    projectDescription {\n      html\n    }\n    projectIdea {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}": typeof types.GetProjectsDocument,
     "query GetTechnologies {\n  techstacks {\n    technologyDescription\n    technologyTitle\n  }\n}": typeof types.GetTechnologiesDocument,
 };
 const documents: Documents = {
     "query GetAuthor {\n  authors {\n    authorDescription\n    name\n    socials {\n      html\n    }\n  }\n}": types.GetAuthorDocument,
     "query MyQuery {\n  experiences {\n    companyInfo {\n      html\n    }\n    companyLogo {\n      url\n    }\n    workdateFrom\n    workdateTo\n  }\n}": types.MyQueryDocument,
     "query GetPosts {\n  posts {\n    content {\n      html\n    }\n    author {\n      name\n      createdAt\n    }\n    coverPhoto {\n      url\n    }\n  }\n}": types.GetPostsDocument,
-    "query GetProjects {\n  projects {\n    projectTitle\n    projectDescription {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}": types.GetProjectsDocument,
+    "query GetProjects {\n  projects(orderBy: publishedAt_DESC) {\n    projectTitle\n    projectDescription {\n      html\n    }\n    projectIdea {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}": types.GetProjectsDocument,
     "query GetTechnologies {\n  techstacks {\n    technologyDescription\n    technologyTitle\n  }\n}": types.GetTechnologiesDocument,
 };
 
@@ -57,7 +57,7 @@ export function graphql(source: "query GetPosts {\n  posts {\n    content {\n   
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "query GetProjects {\n  projects {\n    projectTitle\n    projectDescription {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}"): (typeof documents)["query GetProjects {\n  projects {\n    projectTitle\n    projectDescription {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}"];
+export function graphql(source: "query GetProjects {\n  projects(orderBy: publishedAt_DESC) {\n    projectTitle\n    projectDescription {\n      html\n    }\n    projectIdea {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}"): (typeof documents)["query GetProjects {\n  projects(orderBy: publishedAt_DESC) {\n    projectTitle\n    projectDescription {\n      html\n    }\n    projectIdea {\n      html\n    }\n    techStack\n    projectPhoto {\n      url\n    }\n    projectsPhotos {\n      url\n    }\n  }\n}"];
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

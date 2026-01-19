@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import localFont from "next/font/local";
 import { Toaster } from "@/components/ui/sonner";
-import { ReactElement } from "react";
+import { ReactNode } from "react";
 
 const commitMonoRegular = localFont({
   src: "../public/fonts/CommitMono-400-Regular.otf",
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: ReactElement;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">

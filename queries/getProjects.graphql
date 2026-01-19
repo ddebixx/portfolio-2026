@@ -1,7 +1,10 @@
 query GetProjects {
-  projects {
+  projects(orderBy: publishedAt_DESC) {
     projectTitle
     projectDescription {
+      html
+    }
+    projectIdea {
       html
     }
     techStack
