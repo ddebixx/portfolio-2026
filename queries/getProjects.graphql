@@ -1,18 +1,18 @@
 query GetProjects {
-  projects(orderBy: publishedAt_DESC) {
-    projectTitle
-    projectDescription {
-      html
-    }
-    projectIdea {
-      html
-    }
-    techStack
-    projectPhoto {
-      url
-    }
-    projectsPhotos {
-      url
-    }
-  }
+	projects(orderBy: publishedAt_DESC) {
+		projectTitle
+		projectDescription {
+			html
+		}
+		projectIdea {
+			html
+		}
+		techStack
+		projectPhoto {
+			url
+		}
+		projectsPhotos {
+			url
+		}
+	}
 }

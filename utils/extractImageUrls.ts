@@ -1,34 +1,21 @@
-import type { GetProjectsQuery } from "@/types/graphql";
-import type { MyQueryQuery } from "@/types/graphql";
+import type { GetProjectsQuery, MyQueryQuery } from "@/types/graphql";
+
+function asUrlArray(url: string | null | undefined): string[] {
+	return url ? [url] : [];
+}
 
 export function extractImageUrls(
-  experiences: MyQueryQuery | null | undefined,
-  projects: GetProjectsQuery | null | undefined
+	experiences: MyQueryQuery | null | undefined,
+	projects: GetProjectsQuery | null | undefined
 ): string[] {
-  const imageUrls: string[] = [];
+	const experienceUrls =
+		experiences?.experiences?.flatMap((exp) => asUrlArray(exp.companyLogo?.url)) ?? [];
 
-  if (experiences?.experiences) {
-    experiences.experiences.forEach((exp) => {
-      if (exp.companyLogo?.url) {
-        imageUrls.push(exp.companyLogo.url);
-      }
-    });
-  }
+	const projectUrls =
+		projects?.projects?.flatMap((project) => [
+			...asUrlArray(project.projectPhoto?.url),
+			...(project.projectsPhotos?.flatMap((photo) => asUrlArray(photo.url)) ?? []),
+		]) ?? [];
 
-  if (projects?.projects) {
-    projects.projects.forEach((project) => {
-      if (project.projectPhoto?.url) {
-        imageUrls.push(project.projectPhoto.url);
-      }
-      if (project.projectsPhotos) {
-        project.projectsPhotos.forEach((photo) => {
-          if (photo.url) {
-            imageUrls.push(photo.url);
-          }
-        });
-      }
-    });
-  }
-
-  return imageUrls;
+	return [...experienceUrls, ...projectUrls];
 }
