@@ -142,47 +142,6 @@ npm run dev
 - `npm run lint` - Run ESLint
 - `npm run codegen` - Generate GraphQL types from schema
 
-## 🎨 Development Guidelines
-
-### Code Style
-
-- **TypeScript**: Strict mode enabled
-- **No Default Exports**: Use named exports for components
-- **No React.FC**: Use regular function components
-- **Strong Typing**: All functions and components must be strongly typed
-- **twMerge**: Always use `twMerge` for combining Tailwind classes
-
-### Component Structure
-
-- **Server Components by Default**: Use client components only when needed
-- **Separation of Concerns**: 
-  - UI logic in components
-  - Business logic in hooks
-  - Pure functions in utils
-  - Data fetching in fetchers
-
-### File Organization
-
-- **Components**: `components/` - UI components only
-- **Hooks**: `hooks/` - Custom React hooks (one responsibility per hook)
-- **Utils**: `utils/` - Pure helper functions (no side effects)
-- **Lib**: `lib/` - Shared utilities (non-React)
-- **Fetchers**: `fetchers/` - Data fetching functions with Zod validation
-
-### useEffect Best Practices
-
-Use named inner functions for clarity:
-
-```typescript
-useEffect(() => {
-  function handleDataChange() {
-    // logic here
-  }
-  
-  handleDataChange();
-}, [dependencies]);
-```
-
 ## 🔧 Configuration
 
 ### Hygraph Setup
@@ -200,39 +159,6 @@ images: {
   domains: ["your-image-domain.com"],
 }
 ```
-
-## 📦 Data Fetching
-
-All data is fetched server-side in `app/page.tsx` using `Promise.all` for parallel fetching. Fetchers use:
-
-- **React `cache`**: Request deduplication within the same render
-- **Conditional Caching**: 
-  - Development: `network-only` with `revalidate: 0` (fresh data)
-  - Production: `cache-first` with `revalidate: 3600` (1 hour cache)
-
-## 🎯 Key Features Implementation
-
-### Terminal Navigation
-
-The navbar uses a command-style interface:
-- Type section names or IDs to search
-- Autocomplete with section descriptions
-- Smooth scrolling to selected sections
-- Keyboard navigation (Enter, Escape)
-
-### Preloader
-
-- Fast loading animation (~1.4 seconds)
-- Progress indicators
-- Background image preloading
-- Skeleton states for content
-
-### Image Loading
-
-- Automatic preloading of all images
-- Skeleton states in modals
-- Smooth fade-in transitions
-- Optimized loading strategy
 
 ## 🚢 Deployment
 
@@ -254,17 +180,3 @@ Make sure to set all required environment variables in your deployment platform:
 - **Vercel** - Optimized for Next.js
 - **Netlify** - Great Next.js support
 - **Any Node.js hosting** - Standard Next.js deployment
-
-## 📝 License
-
-This project is private and proprietary.
-
-## 👤 Author
-
-**Andrii Naida**
-- Portfolio: [andrewnaida.dev](https://andrewnaida.dev)
-- Full Stack Developer
-
----
-
-Built with ❤️ using Next.js and TypeScript
