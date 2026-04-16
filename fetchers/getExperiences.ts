@@ -1,12 +1,12 @@
 import { cache } from "react";
 import { client } from "@/lib/apolloClient";
-import { MyQueryDocument, type MyQueryQuery } from "@/types/graphql";
+import { GetExperiencesDocument, type GetExperiencesQuery } from "@/types/graphql";
 
 const isDevelopment = process.env.NODE_ENV === "development";
 
 export const getExperiences = cache(async () => {
-	const { data } = await client.query<MyQueryQuery>({
-		query: MyQueryDocument,
+	const { data } = await client.query<GetExperiencesQuery>({
+		query: GetExperiencesDocument,
 		fetchPolicy: isDevelopment ? "network-only" : "cache-first",
 		context: {
 			fetchOptions: {

@@ -25,7 +25,18 @@ export function usePreloader({ onComplete, imageUrls = [] }: UsePreloaderOptions
 	const [isVisible, setIsVisible] = useState(true);
 
 	useEffect(() => {
-		async function preloadImages() {
+		async function hidePreloaderAndNotifyCompletion() {
+			setIsVisible(false);
+			onComplete?.();
+		}
+
+		async function preloadImagesForFasterRendering() {
+			if (imageUrls.length > 0) {
+				await Promise.allSettled(imageUrls.map((url) => preloadImage(url)));
+			}
+		}
+
+		async function runPreloaderSequence() {
 			try {
 				setCurrentStep(0);
 				setProgress(20);
@@ -41,23 +52,18 @@ export function usePreloader({ onComplete, imageUrls = [] }: UsePreloaderOptions
 				setProgress(100);
 				setStatus("success");
 
-				if (imageUrls.length > 0) {
-					Promise.allSettled(imageUrls.map((url) => preloadImage(url))).catch(() => {});
-				}
+				void preloadImagesForFasterRendering();
 
 				await new Promise((resolve) => setTimeout(resolve, 500));
-
-				setIsVisible(false);
-				onComplete?.();
 			} catch (error) {
 				console.error("Preload error:", error);
-				setIsVisible(false);
-				onComplete?.();
+			} finally {
+				await hidePreloaderAndNotifyCompletion();
 			}
 		}
 
 		const timer = setTimeout(() => {
-			preloadImages();
+			void runPreloaderSequence();
 		}, 100);
 
 		return () => clearTimeout(timer);

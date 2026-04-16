@@ -1,5 +1,28 @@
 import Link from "next/link";
 
+const navigationCommands = [
+	{ href: "/", label: "navigate home" },
+	{ href: "/#hero", label: "navigate hero" },
+	{ href: "/#projects", label: "navigate projects" },
+	{ href: "/#contact", label: "navigate contact" },
+] as const;
+
+interface NavigationCommandLinkProps {
+	href: string;
+	label: string;
+}
+
+const NavigationCommandLink = ({ href, label }: NavigationCommandLinkProps) => {
+	return (
+		<li className="flex items-center gap-2">
+			<span className="terminal-prompt">→</span>
+			<Link href={href} className="text-primary hover:underline transition-colors">
+				{label}
+			</Link>
+		</li>
+	);
+};
+
 export default function NotFound() {
 	return (
 		<div className="flex min-h-screen items-center justify-center font-sans">
@@ -18,33 +41,13 @@ export default function NotFound() {
 								Available commands:
 							</p>
 							<ul className="list-none space-y-1 text-xs sm:text-sm font-commit-mono-regular text-muted-foreground">
-								<li className="flex items-center gap-2">
-									<span className="terminal-prompt">→</span>
-									<Link href="/" className="text-primary hover:underline transition-colors">
-										navigate home
-									</Link>
-								</li>
-								<li className="flex items-center gap-2">
-									<span className="terminal-prompt">→</span>
-									<Link href="/#hero" className="text-primary hover:underline transition-colors">
-										navigate hero
-									</Link>
-								</li>
-								<li className="flex items-center gap-2">
-									<span className="terminal-prompt">→</span>
-									<Link
-										href="/#projects"
-										className="text-primary hover:underline transition-colors"
-									>
-										navigate projects
-									</Link>
-								</li>
-								<li className="flex items-center gap-2">
-									<span className="terminal-prompt">→</span>
-									<Link href="/#contact" className="text-primary hover:underline transition-colors">
-										navigate contact
-									</Link>
-								</li>
+								{navigationCommands.map((command) => (
+									<NavigationCommandLink
+										key={command.href}
+										href={command.href}
+										label={command.label}
+									/>
+								))}
 							</ul>
 						</div>
 					</div>

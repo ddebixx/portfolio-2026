@@ -1,5 +1,5 @@
-query MyQuery {
-	experiences {
+query GetExperiences {
+	experiences(orderBy: workdateFrom_DESC) {
 		companyInfo {
 			html
 		}

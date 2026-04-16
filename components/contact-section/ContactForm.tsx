@@ -14,6 +14,36 @@ interface ContactFormData {
 	message: string;
 }
 
+const emailPattern = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+
+const emailValidationRules = {
+	required: "Email is required",
+	pattern: {
+		value: emailPattern,
+		message: "Invalid email address",
+	},
+} as const;
+
+const subjectValidationRules = {
+	required: "Subject is required",
+	minLength: {
+		value: 3,
+		message: "Subject must be at least 3 characters",
+	},
+} as const;
+
+const messageValidationRules = {
+	required: "Message is required",
+	minLength: {
+		value: 10,
+		message: "Message must be at least 10 characters",
+	},
+} as const;
+
+function getContactFormErrorMessage(error: unknown): string {
+	return error instanceof Error ? error.message : "Failed to send message";
+}
+
 export const ContactForm = () => {
 	const {
 		register,
@@ -28,7 +58,7 @@ export const ContactForm = () => {
 			toast.success("Message sent successfully!");
 			reset();
 		} catch (error) {
-			toast.error(error instanceof Error ? error.message : "Failed to send message");
+			toast.error(getContactFormErrorMessage(error));
 		}
 	}
 
@@ -41,13 +71,7 @@ export const ContactForm = () => {
 						id="email"
 						type="email"
 						placeholder="your.email@example.com"
-						{...register("email", {
-							required: "Email is required",
-							pattern: {
-								value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-								message: "Invalid email address",
-							},
-						})}
+						{...register("email", emailValidationRules)}
 					/>
 					<FieldError errors={[errors.email]} />
 				</FieldContent>
@@ -60,13 +84,7 @@ export const ContactForm = () => {
 						id="subject"
 						type="text"
 						placeholder="What's this about?"
-						{...register("subject", {
-							required: "Subject is required",
-							minLength: {
-								value: 3,
-								message: "Subject must be at least 3 characters",
-							},
-						})}
+						{...register("subject", subjectValidationRules)}
 					/>
 					<FieldError errors={[errors.subject]} />
 				</FieldContent>
@@ -79,13 +97,7 @@ export const ContactForm = () => {
 						id="message"
 						placeholder="Tell me about your project or just say hello..."
 						rows={6}
-						{...register("message", {
-							required: "Message is required",
-							minLength: {
-								value: 10,
-								message: "Message must be at least 10 characters",
-							},
-						})}
+						{...register("message", messageValidationRules)}
 					/>
 					<FieldError errors={[errors.message]} />
 				</FieldContent>

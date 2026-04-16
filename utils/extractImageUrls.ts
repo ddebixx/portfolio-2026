@@ -1,11 +1,11 @@
-import type { GetProjectsQuery, MyQueryQuery } from "@/types/graphql";
+import type { GetExperiencesQuery, GetProjectsQuery } from "@/types/graphql";
 
 function asUrlArray(url: string | null | undefined): string[] {
 	return url ? [url] : [];
 }
 
 export function extractImageUrls(
-	experiences: MyQueryQuery | null | undefined,
+	experiences: GetExperiencesQuery | null | undefined,
 	projects: GetProjectsQuery | null | undefined
 ): string[] {
 	const experienceUrls =
@@ -17,5 +17,5 @@ export function extractImageUrls(
 			...(project.projectsPhotos?.flatMap((photo) => asUrlArray(photo.url)) ?? []),
 		]) ?? [];
 
-	return [...experienceUrls, ...projectUrls];
+	return [...new Set([...experienceUrls, ...projectUrls])];
 }
