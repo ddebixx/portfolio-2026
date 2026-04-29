@@ -6,7 +6,7 @@ export interface Section {
 	description: string;
 }
 
-export const sections: Section[] = [
+const sections: Section[] = [
 	{
 		id: "hero",
 		label: "Hero",
