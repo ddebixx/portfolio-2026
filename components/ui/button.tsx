@@ -5,16 +5,19 @@ import type * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-	"cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-commit-mono-regular font-mono transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:outline-none",
+	"cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-commit-mono-regular font-mono transition-colors disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:outline-none",
 	{
 		variants: {
 			variant: {
-				default: "border border-primary bg-transparent text-primary hover:bg-primary/10",
+				default:
+					"border border-primary/60 bg-white/5 text-primary hover:bg-primary/10 hover:border-primary",
 				destructive:
-					"border border-destructive bg-transparent text-destructive hover:bg-destructive/10",
-				outline: "border border-border bg-transparent text-foreground hover:bg-muted",
-				secondary: "border border-border bg-transparent text-muted-foreground hover:bg-muted",
-				ghost: "border-transparent bg-transparent text-foreground hover:bg-muted",
+					"border border-destructive/60 bg-white/5 text-destructive hover:bg-destructive/10",
+				outline:
+					"border border-white/10 bg-white/5 text-foreground hover:bg-white/10 hover:border-white/15 backdrop-blur-sm",
+				secondary:
+					"border border-white/10 bg-white/5 text-muted-foreground hover:bg-white/10 backdrop-blur-sm",
+				ghost: "border-transparent bg-transparent text-foreground hover:bg-white/5",
 				link: "border-transparent bg-transparent text-primary underline-offset-4 hover:underline",
 			},
 			size: {

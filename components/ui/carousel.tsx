@@ -181,7 +181,7 @@ function CarouselPrevious({
 			variant={variant}
 			size={size}
 			className={cn(
-				"absolute size-8 sm:size-10 rounded border-border bg-background/80 backdrop-blur-sm",
+				"absolute size-8 sm:size-10 rounded-lg border-white/10 bg-black/60 backdrop-blur-md",
 				orientation === "horizontal"
 					? "top-1/2 left-1 sm:left-2 -translate-y-1/2"
 					: "-top-12 left-1/2 -translate-x-1/2 rotate-90",
@@ -211,7 +211,7 @@ function CarouselNext({
 			variant={variant}
 			size={size}
 			className={cn(
-				"absolute size-10 rounded border-border bg-background/80 backdrop-blur-sm",
+				"absolute size-10 rounded-lg border-white/10 bg-black/60 backdrop-blur-md",
 				orientation === "horizontal"
 					? "top-1/2 right-2 -translate-y-1/2"
 					: "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
