@@ -1,4 +1,4 @@
-import type { GetExperiencesQuery, GetProjectsQuery } from "@/types/graphql";
+import type { GetExperiencesQuery, GetPostsQuery, GetProjectsQuery } from "@/types/graphql";
 
 function asUrlArray(url: string | null | undefined): string[] {
 	return url ? [url] : [];
@@ -6,7 +6,8 @@ function asUrlArray(url: string | null | undefined): string[] {
 
 export function extractImageUrls(
 	experiences: GetExperiencesQuery | null | undefined,
-	projects: GetProjectsQuery | null | undefined
+	projects: GetProjectsQuery | null | undefined,
+	posts?: GetPostsQuery | null
 ): string[] {
 	const experienceUrls =
 		experiences?.experiences?.flatMap((exp) => asUrlArray(exp.companyLogo?.url)) ?? [];
@@ -17,5 +18,7 @@ export function extractImageUrls(
 			...(project.projectsPhotos?.flatMap((photo) => asUrlArray(photo.url)) ?? []),
 		]) ?? [];
 
-	return [...new Set([...experienceUrls, ...projectUrls])];
+	const postUrls = posts?.posts?.flatMap((post) => asUrlArray(post.coverPhoto?.url)) ?? [];
+
+	return [...new Set([...experienceUrls, ...projectUrls, ...postUrls])];
 }
