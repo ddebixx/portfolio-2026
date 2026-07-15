@@ -17,15 +17,14 @@ interface BlogPostPageProps {
 
 export default async function BlogPostPage({ params }: BlogPostPageProps) {
 	const { slug } = await params;
-	const [postData, postsData] = await Promise.all([getPost(slug), getPosts()]);
-	const post = postData?.post;
+	const [post, posts] = await Promise.all([getPost(slug), getPosts()]);
 
 	if (!post) {
 		notFound();
 	}
 
 	const readTimeInMinutes = calculateReadTimeInMinutes(post.content.text);
-	const { previousPost, nextPost } = getAdjacentPosts(postsData?.posts ?? [], post.slug);
+	const { previousPost, nextPost } = getAdjacentPosts(posts, post.slug);
 
 	return (
 		<PageShell>

@@ -2,14 +2,14 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { BlogPageHeader } from "@/components/blog-section/BlogPageHeader";
 import { Button } from "@/components/ui/button";
-import type { GetPostsQuery } from "@/types/graphql";
+import type { PostSummary } from "@/types/schemas";
 
 interface BlogFooterProps {
-	posts: GetPostsQuery | null;
+	posts: PostSummary[] | null;
 }
 
-function getPostCount(posts: GetPostsQuery | null): number {
-	return posts?.posts?.length ?? 0;
+function getPostCount(posts: PostSummary[] | null): number {
+	return posts?.length ?? 0;
 }
 
 export const BlogFooter = ({ posts }: BlogFooterProps) => {

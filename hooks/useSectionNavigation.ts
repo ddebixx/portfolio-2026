@@ -96,17 +96,23 @@ export function useSectionNavigation() {
 		navigateToSection(section);
 	}
 
-	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
-		const value = e.target.value;
-
+	function clearSectionSelectionIfSearchChanged(value: string) {
 		if (selectedSection && value !== `navigate ${selectedSection.id}`) {
 			setSelectedSection(null);
 		}
+	}
 
-		setSearchValue(value);
+	function openDropdownIfSearchHasValue(value: string) {
 		if (value.trim() && !open) {
 			setOpen(true);
 		}
+	}
+
+	function handleInputChange(e: ChangeEvent<HTMLInputElement>) {
+		const value = e.target.value;
+		clearSectionSelectionIfSearchChanged(value);
+		setSearchValue(value);
+		openDropdownIfSearchHasValue(value);
 	}
 
 	function handleKeyDown(event: KeyboardEvent<HTMLInputElement>, filteredSections: Section[]) {

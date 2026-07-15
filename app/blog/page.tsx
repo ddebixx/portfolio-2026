@@ -6,8 +6,7 @@ import { PageShell } from "@/components/shared/PageShell";
 import { getPosts } from "@/fetchers/getPosts";
 
 export default async function BlogIndexPage() {
-	const postsData = await getPosts();
-	const posts = postsData?.posts ?? [];
+	const posts = await getPosts();
 
 	return (
 		<PageShell>
