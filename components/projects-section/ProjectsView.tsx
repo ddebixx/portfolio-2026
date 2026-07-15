@@ -16,7 +16,7 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
 				<TabsTrigger value="list">List</TabsTrigger>
 			</TabsList>
 
-			<TabsContent value="grid" className="mt-4">
+			<TabsContent value="grid" className="mt-5">
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
 					{projects?.map((project) => (
 						<ProjectCard key={project.projectTitle} project={project} layout="grid" />
@@ -24,7 +24,7 @@ export const ProjectsView = ({ projects }: ProjectsViewProps) => {
 				</div>
 			</TabsContent>
 
-			<TabsContent value="list" className="mt-4">
+			<TabsContent value="list" className="mt-5">
 				<div className="grid grid-cols-1 gap-4">
 					{projects?.map((project) => (
 						<ProjectCard key={project.projectTitle} project={project} layout="list" />

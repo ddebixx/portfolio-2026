@@ -23,13 +23,12 @@ export const Preloader = ({ className, onComplete, imageUrls = [] }: PreloaderPr
 	return (
 		<div
 			className={twMerge(
-				"fixed inset-0 z-[100] flex items-center justify-center bg-black transition-opacity duration-500",
-				!isVisible && "opacity-0 pointer-events-none",
+				"fixed inset-0 z-100 flex items-center justify-center bg-black",
 				className
 			)}
 		>
 			<div className="w-full max-w-4xl px-4 sm:px-8 md:px-16">
-				<div className="border border-border bg-black p-4 sm:p-6 font-mono">
+				<div className="glass-panel p-4 sm:p-6 font-mono">
 					<div className="flex flex-col gap-4">
 						<div className="flex items-center gap-2">
 							<span className="terminal-prompt text-muted-foreground">$</span>

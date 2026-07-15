@@ -12,7 +12,7 @@ const resumePath = `/documents/${resumeFileName}`;
 
 const HeroSectionSkeleton = () => {
 	return (
-		<section id="hero" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
+		<section id="hero" className="flex flex-col gap-4 sm:gap-5 w-full">
 			<Skeleton className="h-6 w-48" />
 			<Skeleton className="h-4 w-full max-w-md" />
 			<Skeleton className="h-4 w-32" />
@@ -29,8 +29,10 @@ export const HeroSection = ({ author }: HeroSectionProps) => {
 	}
 
 	return (
-		<section id="hero" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
-			<h1 className="text-base sm:text-lg font-commit-mono-bold font-mono">{authorData.name}</h1>
+		<section id="hero" className="flex flex-col gap-4 sm:gap-5 w-full fade-in-up">
+			<h1 className="text-xl sm:text-2xl font-commit-mono-bold font-mono cursor-blink">
+				{authorData.name}
+			</h1>
 			<p className="text-xs sm:text-sm font-commit-mono-regular text-muted-foreground">
 				{authorData.authorDescription}
 			</p>

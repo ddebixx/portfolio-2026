@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { GetProjectsQuery } from "@/types/graphql";
 import { ProjectsView } from "./ProjectsView";
@@ -8,12 +9,15 @@ interface ProjectsSectionProps {
 
 export const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
 	return (
-		<section id="projects" className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
-			<h2 className="text-base sm:text-lg font-commit-mono-bold font-mono">Projects</h2>
+		<section
+			id="projects"
+			className="flex flex-col gap-4 sm:gap-6 w-full fade-in-up [animation-delay:120ms]"
+		>
+			<SectionHeading>Projects</SectionHeading>
 			{!projects?.projects ? (
 				<div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
 					{[1, 2, 3, 4].map((i) => (
-						<div key={i} className="border border-border p-3 sm:p-4 flex flex-col gap-3">
+						<div key={i} className="glass-panel p-3 sm:p-4 flex flex-col gap-3">
 							<Skeleton className="w-full h-40 sm:h-48 rounded" />
 							<Skeleton className="h-4 w-32" />
 							<Skeleton className="h-4 w-full" />

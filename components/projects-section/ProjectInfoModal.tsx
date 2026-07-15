@@ -40,12 +40,12 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
 	return (
 		<Dialog open={open} onOpenChange={handleOpenChange}>
 			<DialogTrigger asChild>{trigger}</DialogTrigger>
-			<DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-3 sm:p-6">
+			<DialogContent className="max-w-[95vw] sm:max-w-2xl md:max-w-4xl max-h-[95vh] sm:max-h-[90vh] overflow-y-auto p-4 sm:p-6 gap-5 sm:gap-6">
 				<DialogHeader>
-					<DialogTitle>{project.projectTitle}</DialogTitle>
+					<DialogTitle className="text-sm sm:text-base">{project.projectTitle}</DialogTitle>
 				</DialogHeader>
 
-				<div className="space-y-4 sm:space-y-6">
+				<div className="flex flex-col gap-4 sm:gap-5">
 					{project.projectsPhotos && project.projectsPhotos.length > 0 && (
 						<Carousel className="w-full">
 							<CarouselContent>
@@ -108,14 +108,19 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
 					) : null}
 
 					{project.projectDescription?.html ? (
-						<div
-							className="projects-description text-xs sm:text-sm"
-							dangerouslySetInnerHTML={{
-								__html: project.projectDescription.html,
-							}}
-						/>
+						<div className="glass-panel p-4 sm:p-5">
+							<p className="mb-3 text-[11px] sm:text-xs font-mono text-terminal-green opacity-80">
+								{"// overview"}
+							</p>
+							<div
+								className="projects-description text-xs sm:text-sm"
+								dangerouslySetInnerHTML={{
+									__html: project.projectDescription.html,
+								}}
+							/>
+						</div>
 					) : (
-						<div className="space-y-2">
+						<div className="glass-panel p-4 sm:p-5 space-y-2">
 							<Skeleton className="h-4 w-full" />
 							<Skeleton className="h-4 w-full" />
 							<Skeleton className="h-4 w-3/4" />
@@ -123,14 +128,19 @@ export const ProjectInfoModal = ({ project, trigger }: ProjectInfoModalProps) =>
 					)}
 
 					{project.projectIdea?.html ? (
-						<div
-							className="projects-description text-xs sm:text-sm"
-							dangerouslySetInnerHTML={{
-								__html: project.projectIdea.html,
-							}}
-						/>
+						<div className="glass-panel p-4 sm:p-5">
+							<p className="mb-3 text-[11px] sm:text-xs font-mono text-terminal-green opacity-80">
+								{"// idea"}
+							</p>
+							<div
+								className="projects-description text-xs sm:text-sm"
+								dangerouslySetInnerHTML={{
+									__html: project.projectIdea.html,
+								}}
+							/>
+						</div>
 					) : project.projectIdea ? (
-						<div className="space-y-2">
+						<div className="glass-panel p-4 sm:p-5 space-y-2">
 							<Skeleton className="h-4 w-full" />
 							<Skeleton className="h-4 w-full" />
 							<Skeleton className="h-4 w-2/3" />

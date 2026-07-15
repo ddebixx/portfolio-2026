@@ -1,5 +1,6 @@
 import Image from "next/image";
 import "../../app/styles/components.css";
+import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { GetExperiencesQuery } from "@/types/graphql";
 
@@ -48,9 +49,9 @@ const ExperienceItem = ({ experience, isLastItem }: ExperienceItemProps) => {
 
 			<span
 				aria-hidden
-				className="absolute left-0 top-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary border-2 border-background flex items-center justify-center"
+				className="absolute left-0 top-2 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-terminal-green border-2 border-background flex items-center justify-center"
 			>
-				<span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-primary" />
+				<span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-background" />
 			</span>
 
 			<div className="mb-3">
@@ -59,7 +60,7 @@ const ExperienceItem = ({ experience, isLastItem }: ExperienceItemProps) => {
 				</p>
 			</div>
 
-			<div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4">
+			<div className="flex flex-col sm:flex-row items-start gap-3 sm:gap-4 glass-panel p-4 sm:p-5">
 				<Image
 					src={experience.companyLogo.url}
 					alt="Company logo"
@@ -83,9 +84,9 @@ export const ExperienceSection = ({ experiences }: ExperienceSectionProps) => {
 	return (
 		<section
 			id="experience"
-			className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center"
+			className="flex flex-col gap-4 sm:gap-6 w-full fade-in-up [animation-delay:80ms]"
 		>
-			<h2 className="text-base sm:text-lg font-commit-mono-bold font-mono">Experience</h2>
+			<SectionHeading>Experience</SectionHeading>
 			<div className="experience-timeline relative">
 				{isLoading
 					? skeletonItems.map((item) => <ExperienceSkeletonItem key={item} />)

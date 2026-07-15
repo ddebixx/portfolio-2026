@@ -31,15 +31,21 @@ export const Navbar = ({ className }: NavbarProps) => {
 	return (
 		<nav
 			className={twMerge(
-				"fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full max-w-4xl px-4 sm:px-8 md:px-16",
+				"fixed top-4 inset-x-0 z-[100] mx-auto w-full max-w-4xl px-4 sm:px-8 md:px-16",
 				className
 			)}
 		>
-			<Popover open={open} onOpenChange={setOpen}>
-				<PopoverAnchor asChild>
-					<div className="relative w-full">
-						<div className="flex items-center gap-2 border border-border bg-black px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-sm focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2">
-							<span className="terminal-prompt text-muted-foreground">$</span>
+			<div className="relative w-full overflow-hidden rounded-xl border border-white/12 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-colors duration-200 focus-within:border-terminal-green/30 focus-within:ring-2 focus-within:ring-terminal-green/20">
+				<div
+					aria-hidden="true"
+					className="pointer-events-none absolute inset-0 z-0 bg-black/30 backdrop-blur-2xl backdrop-saturate-150"
+				/>
+				<Popover open={open} onOpenChange={setOpen}>
+					<PopoverAnchor asChild>
+						<div className="relative z-10 flex w-full items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-sm">
+							<span className="terminal-prompt" aria-hidden="true">
+								$
+							</span>
 							<input
 								type="text"
 								value={searchValue}
@@ -51,43 +57,43 @@ export const Navbar = ({ className }: NavbarProps) => {
 								className="flex-1 bg-transparent outline-none placeholder:text-muted-foreground text-xs sm:text-sm"
 							/>
 						</div>
-					</div>
-				</PopoverAnchor>
-				<PopoverContent
-					className="w-[var(--radix-popover-anchor-width)] p-0"
-					align="start"
-					onOpenAutoFocus={(e) => e.preventDefault()}
-				>
-					<Command shouldFilter={false}>
-						<CommandList>
-							<CommandEmpty>No sections found.</CommandEmpty>
-							<CommandGroup heading="Sections">
-								{filteredSections.map((section) => (
-									<CommandItem
-										key={section.id}
-										value={section.id}
-										onSelect={() => handleSelectSection(section)}
-										onMouseDown={(e) => {
-											e.preventDefault();
-										}}
-										className="cursor-pointer"
-									>
-										<div className="flex flex-col gap-1">
-											<div className="flex items-center gap-2">
-												<span className="font-commit-mono-bold font-mono">{section.label}</span>
-												<span className="text-muted-foreground text-xs font-mono">
-													({section.id})
-												</span>
+					</PopoverAnchor>
+					<PopoverContent
+						className="z-[110] w-(--radix-popover-anchor-width) p-0"
+						align="start"
+						onOpenAutoFocus={(e) => e.preventDefault()}
+					>
+						<Command shouldFilter={false}>
+							<CommandList>
+								<CommandEmpty>No sections found.</CommandEmpty>
+								<CommandGroup heading="Sections">
+									{filteredSections.map((section) => (
+										<CommandItem
+											key={section.id}
+											value={section.id}
+											onSelect={() => handleSelectSection(section)}
+											onMouseDown={(e) => {
+												e.preventDefault();
+											}}
+											className="cursor-pointer"
+										>
+											<div className="flex flex-col gap-1">
+												<div className="flex items-center gap-2">
+													<span className="font-commit-mono-bold font-mono">{section.label}</span>
+													<span className="text-muted-foreground text-xs font-mono">
+														({section.id})
+													</span>
+												</div>
+												<span className="text-muted-foreground text-xs">{section.description}</span>
 											</div>
-											<span className="text-muted-foreground text-xs">{section.description}</span>
-										</div>
-									</CommandItem>
-								))}
-							</CommandGroup>
-						</CommandList>
-					</Command>
-				</PopoverContent>
-			</Popover>
+										</CommandItem>
+									))}
+								</CommandGroup>
+							</CommandList>
+						</Command>
+					</PopoverContent>
+				</Popover>
+			</div>
 		</nav>
 	);
 };

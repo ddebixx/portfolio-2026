@@ -13,8 +13,8 @@ interface ProjectCardProps {
 
 function getCardContainerClass(isGridLayout: boolean): string {
 	return isGridLayout
-		? "border border-border p-3 sm:p-4 flex flex-col h-full"
-		: "flex flex-col sm:flex-row gap-3 sm:gap-4 border border-border p-3 sm:p-4";
+		? "glass-panel p-3 sm:p-4 flex flex-col h-full"
+		: "glass-panel flex flex-col sm:flex-row gap-3 sm:gap-4 p-3 sm:p-4";
 }
 
 function getCardImageDimensions(isGridLayout: boolean): { width: number; height: number } {
@@ -23,8 +23,8 @@ function getCardImageDimensions(isGridLayout: boolean): { width: number; height:
 
 function getCardImageClassName(isGridLayout: boolean): string {
 	return isGridLayout
-		? "w-full rounded h-40 sm:h-48 object-cover mb-3 sm:mb-4"
-		: "w-full rounded sm:w-48 h-32 sm:h-32 object-cover shrink-0";
+		? "w-full rounded-lg h-40 sm:h-48 object-cover mb-3 sm:mb-4"
+		: "w-full rounded-lg sm:w-48 h-32 sm:h-32 object-cover shrink-0";
 }
 
 function getCardDescriptionClassName(isGridLayout: boolean): string {
