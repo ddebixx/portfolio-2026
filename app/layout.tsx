@@ -3,6 +3,7 @@ import "./globals.css";
 import localFont from "next/font/local";
 import type { ReactNode } from "react";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { Navbar } from "@/components/shared/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 
 const commitMonoRegular = localFont({
@@ -31,6 +32,7 @@ export default function RootLayout({
 		<html lang="en" className="dark" suppressHydrationWarning>
 			<body className={`${commitMonoRegular.variable} ${commitMonoBold.variable} antialiased`}>
 				<ThemeProvider>
+					<Navbar />
 					{children}
 					<Toaster />
 				</ThemeProvider>

@@ -4,7 +4,7 @@
 
 * {
 	scrollbar-width: thin;
-	scrollbar-color: var(--color-muted) var(--color-background);
+	scrollbar-color: var(--color-muted) #000;
 }
 
 .social-links a {
@@ -18,48 +18,25 @@
 	text-decoration: none;
 }
 
-.auto-grid-borders > * {
-	border: 1px solid var(--color-border);
-	padding: 1rem;
-	margin-top: -1px;
-}
-.auto-grid-borders > *:first-child {
-	margin-top: 0;
-}
-
-.technologies-list > .technologies-item {
-	margin-top: -1px;
-	margin-left: -1px;
+.glass-panel {
+	border-radius: 0.75rem;
+	border: 1px solid oklch(1 0 0 / 8%);
+	background: oklch(1 0 0 / 3%);
+	backdrop-filter: blur(16px);
+	-webkit-backdrop-filter: blur(16px);
 }
 
-.technologies-list > .technologies-item:first-child {
-	margin-top: 0;
-	margin-left: 0;
+.glass-panel-interactive {
+	transition:
+		border-color 0.2s ease,
+		background 0.2s ease,
+		box-shadow 0.2s ease;
 }
 
-@media (min-width: 640px) and (max-width: 767px) {
-	.technologies-list > .technologies-item:first-child,
-	.technologies-list > .technologies-item:nth-child(odd) {
-		margin-left: 0;
-	}
-}
-
-@media (min-width: 768px) {
-	.technologies-list > .technologies-item:nth-child(3n + 1) {
-		margin-left: 0;
-	}
-}
-
-@media (min-width: 640px) and (max-width: 767px) {
-	.technologies-list > .technologies-item:nth-child(-n + 2) {
-		margin-top: 0;
-	}
-}
-
-@media (min-width: 768px) {
-	.technologies-list > .technologies-item:nth-child(-n + 3) {
-		margin-top: 0;
-	}
+.glass-panel-interactive:hover {
+	border-color: oklch(1 0 0 / 12%);
+	background: oklch(1 0 0 / 5%);
+	box-shadow: inset 3px 0 0 0 oklch(0.7 0.15 145 / 50%);
 }
 
 .terminal-prompt {
@@ -73,14 +50,14 @@
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--color-background);
+	background: #000;
 	border-left: 1px solid var(--color-border);
 }
 
 ::-webkit-scrollbar-thumb {
 	background: var(--color-muted);
 	border: 1px solid var(--color-border);
-	border-radius: 0;
+	border-radius: 6px;
 	transition: background 0.2s ease;
 }
 
@@ -89,22 +66,30 @@
 }
 
 ::-webkit-scrollbar-corner {
-	background: var(--color-background);
+	background: #000;
 	border: 1px solid var(--color-border);
 }
 
-.experience-description {
+/* ─── Shared rich content styles ─────────────────────────────────────────── */
+
+.experience-description,
+.projects-description,
+.blog-description {
 	font-family: var(--font-commit-mono), monospace;
 	color: var(--color-muted-foreground);
 	line-height: 1.6;
 }
 
-.experience-description p {
+.experience-description p,
+.projects-description p,
+.blog-description p {
 	margin: 0 0 0.75rem 0;
 	font-size: 0.875rem;
 }
 
-.experience-description p:last-child {
+.experience-description p:last-child,
+.projects-description p:last-child,
+.blog-description p:last-child {
 	margin-bottom: 0;
 }
 
@@ -113,64 +98,109 @@
 .experience-description h3,
 .experience-description h4,
 .experience-description h5,
-.experience-description h6 {
+.experience-description h6,
+.projects-description h1,
+.projects-description h2,
+.projects-description h3,
+.projects-description h4,
+.projects-description h5,
+.projects-description h6,
+.blog-description h1,
+.blog-description h2,
+.blog-description h3,
+.blog-description h4,
+.blog-description h5,
+.blog-description h6 {
 	font-weight: 700;
 	margin: 1rem 0 0.5rem 0;
 	color: var(--color-foreground);
 	line-height: 1.2;
 }
 
-.experience-description h1 {
+.experience-description h1,
+.projects-description h1,
+.blog-description h1 {
 	font-size: 1.5rem;
 }
 
-.experience-description h2 {
+.experience-description h2,
+.projects-description h2,
+.blog-description h2 {
 	font-size: 1.25rem;
 }
 
-.experience-description h3 {
+.experience-description h3,
+.projects-description h3,
+.blog-description h3 {
 	font-size: 1.125rem;
 }
 
 .experience-description h4,
 .experience-description h5,
-.experience-description h6 {
+.experience-description h6,
+.projects-description h4,
+.projects-description h5,
+.projects-description h6,
+.blog-description h4,
+.blog-description h5,
+.blog-description h6 {
 	font-size: 1rem;
 }
 
-.experience-description a {
+.experience-description a,
+.projects-description a,
+.blog-description a {
 	color: var(--color-primary);
 	text-decoration: underline;
 	text-underline-offset: 2px;
+	transition: all 0.2s;
 }
 
-.experience-description a:hover {
+.experience-description a:hover,
+.projects-description a:hover,
+.blog-description a:hover {
 	text-decoration: none;
 }
 
 .experience-description ul,
-.experience-description ol {
+.experience-description ol,
+.projects-description ul,
+.projects-description ol,
+.blog-description ul,
+.blog-description ol {
 	margin: 0.75rem 0;
 	padding-left: 1.5rem;
 }
 
-.experience-description li {
+.experience-description li,
+.projects-description li,
+.blog-description li {
 	margin: 0.25rem 0;
 	font-size: 0.875rem;
 }
 
 .experience-description strong,
-.experience-description b {
+.experience-description b,
+.projects-description strong,
+.projects-description b,
+.blog-description strong,
+.blog-description b {
 	font-weight: 700;
 	color: var(--color-foreground);
 }
 
 .experience-description em,
-.experience-description i {
+.experience-description i,
+.projects-description em,
+.projects-description i,
+.blog-description em,
+.blog-description i {
 	font-style: italic;
 }
 
-.experience-description code {
+.experience-description code,
+.projects-description code,
+.blog-description code {
 	font-family: var(--font-commit-mono), monospace;
 	font-size: 0.875em;
 	background-color: var(--color-muted);
@@ -179,7 +209,9 @@
 	color: var(--color-foreground);
 }
 
-.experience-description blockquote {
+.experience-description blockquote,
+.projects-description blockquote,
+.blog-description blockquote {
 	margin: 0.75rem 0;
 	padding-left: 1rem;
 	border-left: 2px solid var(--color-border);
@@ -187,66 +219,14 @@
 	font-style: italic;
 }
 
-.projects-description {
-	font-family: var(--font-commit-mono), monospace;
-	color: var(--color-muted-foreground);
-	line-height: 1.6;
-}
-
-.projects-description p {
-	margin: 0 0 0.75rem 0;
-	font-size: 0.875rem;
-}
-
-.projects-description p:last-child {
-	margin-bottom: 0;
-}
-
-.projects-description h1,
-.projects-description h2,
-.projects-description h3,
-.projects-description h4,
-.projects-description h5,
-.projects-description h6 {
-	font-weight: 700;
-	margin: 1rem 0 0.5rem 0;
-	color: var(--color-foreground);
-	line-height: 1.2;
-}
-
-.projects-description h1 {
-	font-size: 1.5rem;
-}
-
-.projects-description h2 {
-	font-size: 1.25rem;
-}
-
-.projects-description h3 {
-	font-size: 1.125rem;
-}
-
-.projects-description h4,
-.projects-description h5,
-.projects-description h6 {
-	font-size: 1rem;
-}
-
-.projects-description a {
-	color: var(--color-primary);
-	text-decoration: underline;
-	text-underline-offset: 2px;
-	transition: all 0.2s;
-}
-
-.projects-description a:hover {
-	text-decoration: none;
-}
+/* ─── Projects-specific button-style anchor overrides ────────────────────── */
 
 .projects-description a[class*="button"],
 .projects-description a.button,
 .projects-description a[role="button"],
-.projects-description a[style*="button"] {
+.projects-description a[style*="button"],
+.projects-description a[data-button="true"],
+.projects-description a[data-type="button"] {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -260,7 +240,7 @@
 	background-color: transparent;
 	color: var(--color-primary);
 	text-decoration: none;
-	border-radius: 0;
+	border-radius: 0.5rem;
 	transition: all 0.2s;
 	cursor: pointer;
 	white-space: nowrap;
@@ -270,7 +250,9 @@
 .projects-description a[class*="button"]:hover,
 .projects-description a.button:hover,
 .projects-description a[role="button"]:hover,
-.projects-description a[style*="button"]:hover {
+.projects-description a[style*="button"]:hover,
+.projects-description a[data-button="true"]:hover,
+.projects-description a[data-type="button"]:hover {
 	background-color: oklch(from var(--color-primary) l c h / 0.1);
 	text-decoration: none;
 }
@@ -283,67 +265,62 @@
 	outline-offset: 2px;
 }
 
-.projects-description a[data-button="true"],
-.projects-description a[data-type="button"] {
-	display: inline-flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
-	height: 2.25rem;
-	padding: 0.5rem 1rem;
-	font-family: var(--font-commit-mono), monospace;
-	font-size: 0.875rem;
-	border: 1px solid var(--color-primary);
-	background-color: transparent;
-	color: var(--color-primary);
-	text-decoration: none;
-	border-radius: 0;
-	transition: all 0.2s;
-	cursor: pointer;
-	white-space: nowrap;
+/* ─── Scanline overlay ───────────────────────────────────────────────────── */
+body::before {
+	content: "";
+	position: fixed;
+	inset: 0;
+	background: repeating-linear-gradient(
+		0deg,
+		transparent,
+		transparent 3px,
+		oklch(0 0 0 / 1.5%) 3px,
+		oklch(0 0 0 / 1.5%) 4px
+	);
+	pointer-events: none;
+	z-index: 1;
 }
 
-.projects-description a[data-button="true"]:hover,
-.projects-description a[data-type="button"]:hover {
-	background-color: oklch(from var(--color-primary) l c h / 0.1);
-	text-decoration: none;
+/* ─── Hero radial glow ───────────────────────────────────────────────────── */
+.hero-glow {
+	background-color: #000;
+	background-image: radial-gradient(
+		ellipse 100% 55% at 50% 0%,
+		oklch(0.7 0.15 145 / 5%) 0%,
+		transparent 65%
+	);
 }
 
-.projects-description ul,
-.projects-description ol {
-	margin: 0.75rem 0;
-	padding-left: 1.5rem;
+/* ─── Hero name cursor blink ─────────────────────────────────────────────── */
+@keyframes cursor-blink {
+	0%,
+	100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
 }
 
-.projects-description li {
-	margin: 0.25rem 0;
-	font-size: 0.875rem;
+.cursor-blink::after {
+	content: "_";
+	color: var(--color-terminal-green);
+	margin-left: 2px;
+	animation: cursor-blink 1.2s step-end infinite;
 }
 
-.projects-description strong,
-.projects-description b {
-	font-weight: 700;
-	color: var(--color-foreground);
+/* ─── Section fade-in-up on mount ────────────────────────────────────────── */
+@keyframes fade-in-up {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
 }
 
-.projects-description em,
-.projects-description i {
-	font-style: italic;
-}
-
-.projects-description code {
-	font-family: var(--font-commit-mono), monospace;
-	font-size: 0.875em;
-	background-color: var(--color-muted);
-	padding: 0.125rem 0.25rem;
-	border-radius: 0.25rem;
-	color: var(--color-foreground);
-}
-
-.projects-description blockquote {
-	margin: 0.75rem 0;
-	padding-left: 1rem;
-	border-left: 2px solid var(--color-border);
-	color: var(--color-muted-foreground);
-	font-style: italic;
+.fade-in-up {
+	animation: fade-in-up 0.55s ease-out both;
 }

@@ -1,18 +1,20 @@
 import { NextResponse } from "next/server";
 import { getAuthor } from "@/fetchers/getAuthor";
 import { getExperiences } from "@/fetchers/getExperiences";
+import { getPosts } from "@/fetchers/getPosts";
 import { getProjects } from "@/fetchers/getProjects";
 import { getTechnologies } from "@/fetchers/getTechnologies";
 
 async function getAllPreloadData() {
-	const [author, experiences, projects, technologies] = await Promise.all([
+	const [author, experiences, projects, technologies, posts] = await Promise.all([
 		getAuthor(),
 		getExperiences(),
 		getProjects(),
 		getTechnologies(),
+		getPosts(),
 	]);
 
-	return { author, experiences, projects, technologies };
+	return { author, experiences, projects, technologies, posts };
 }
 
 export async function GET(request: Request) {
@@ -25,6 +27,7 @@ export async function GET(request: Request) {
 			experience: { responseKey: "experiences", fetch: getExperiences },
 			projects: { responseKey: "projects", fetch: getProjects },
 			technologies: { responseKey: "technologies", fetch: getTechnologies },
+			blog: { responseKey: "posts", fetch: getPosts },
 		};
 
 		if (step && stepFetchers[step]) {

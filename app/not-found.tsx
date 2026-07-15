@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { PageContent } from "@/components/shared/PageContent";
+import { PageShell } from "@/components/shared/PageShell";
 
 const navigationCommands = [
 	{ href: "/", label: "navigate home" },
 	{ href: "/#hero", label: "navigate hero" },
 	{ href: "/#projects", label: "navigate projects" },
+	{ href: "/blog", label: "navigate blog" },
 	{ href: "/#contact", label: "navigate contact" },
 ] as const;
 
@@ -25,9 +28,9 @@ const NavigationCommandLink = ({ href, label }: NavigationCommandLinkProps) => {
 
 export default function NotFound() {
 	return (
-		<div className="flex min-h-screen items-center justify-center font-sans">
-			<main className="auto-grid-borders grid grid-cols-1 sm:grid-cols-2 w-full max-w-4xl flex-col items-center justify-between py-8 px-4 sm:py-16 md:py-32 sm:px-8 md:px-16 sm:items-start">
-				<section className="grid grid-cols-1 col-span-2 gap-4 items-start justify-center">
+		<PageShell>
+			<PageContent>
+				<section className="flex flex-col gap-4 sm:gap-6 w-full">
 					<div className="flex flex-col gap-4">
 						<div className="flex items-center gap-2">
 							<span className="terminal-prompt text-muted-foreground">$</span>
@@ -52,7 +55,7 @@ export default function NotFound() {
 						</div>
 					</div>
 				</section>
-			</main>
-		</div>
+			</PageContent>
+		</PageShell>
 	);
 }
