@@ -1,14 +1,14 @@
 query GetPosts {
-	posts {
-		content {
-			html
-		}
-		author {
-			name
-			createdAt
-		}
+	posts(orderBy: datePublished_DESC) {
+		id
+		title
+		slug
+		datePublished
 		coverPhoto {
 			url
+		}
+		content {
+			text
 		}
 	}
 }

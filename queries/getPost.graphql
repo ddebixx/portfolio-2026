@@ -1,0 +1,15 @@
+query GetPost($slug: String!) {
+	post(where: { slug: $slug }) {
+		id
+		title
+		slug
+		datePublished
+		coverPhoto {
+			url
+		}
+		content {
+			html
+			text
+		}
+	}
+}

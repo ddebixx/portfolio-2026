@@ -13,6 +13,9 @@ export const client = new ApolloClient({
 					projects: {
 						merge: false,
 					},
+					posts: {
+						merge: false,
+					},
 					myLibraries: {
 						merge: false,
 					},
