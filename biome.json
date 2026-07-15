@@ -83,7 +83,9 @@
 				"components/experience-section/**",
 				"components/portfolio-hero/**",
 				"components/projects-section/**",
-				"components/technologies-section/**"
+				"components/technologies-section/**",
+				"components/blog-section/**",
+				"app/blog/**"
 			],
 			"linter": {
 				"rules": {
