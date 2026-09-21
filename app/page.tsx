@@ -1,4 +1,4 @@
-import { BlogFooter } from "@/components/blog-section/BlogFooter";
+import { BlogSection } from "@/components/blog-section/BlogSection";
 import { ContactSection } from "@/components/contact-section/ContactSection";
 import { ExperienceSection } from "@/components/experience-section/ExperienceSection";
 import { HeroSection } from "@/components/portfolio-hero/HeroSection";
@@ -29,13 +29,15 @@ export default async function Home() {
 		<PageShell>
 			<PageContent withSectionSpacing>
 				<Preloader imageUrls={imageUrls} />
-				<HeroSection author={author || null} />
+				<div className="flex flex-col gap-8 sm:gap-10">
+					<HeroSection author={author || null} />
+					<BlogSection posts={posts} />
+				</div>
 				<ExperienceSection experiences={experiences || null} />
 				<ProjectsSection projects={projects || null} />
 				<TechnologiesSection technologies={technologies || null} />
 				<ContactSection />
 			</PageContent>
-			<BlogFooter posts={posts || null} />
 		</PageShell>
 	);
 }

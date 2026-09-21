@@ -26,7 +26,7 @@ function DialogOverlay({
 		<DialogPrimitive.Overlay
 			data-slot="dialog-overlay"
 			className={cn(
-				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/70 backdrop-blur-sm",
+				"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/80",
 				className
 			)}
 			{...props}
@@ -48,7 +48,7 @@ function DialogContent({
 			<DialogPrimitive.Content
 				data-slot="dialog-content"
 				className={cn(
-					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-[calc(100%-0.5rem)] sm:w-full max-w-[calc(100%-1rem)] sm:max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-3 sm:gap-4 rounded-xl border border-white/10 bg-black/75 p-3 sm:p-6 shadow-2xl backdrop-blur-xl duration-200 outline-none sm:max-w-2xl md:max-w-4xl",
+					"data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 fixed top-[50%] left-[50%] z-50 grid w-[calc(100%-0.5rem)] sm:w-full max-w-[calc(100%-1rem)] sm:max-w-[calc(100%-2rem)] translate-x-[-50%] translate-y-[-50%] gap-3 sm:gap-4 rounded-xl border border-white/10 bg-black p-3 sm:p-6 duration-200 outline-none sm:max-w-2xl md:max-w-4xl",
 					className
 				)}
 				{...props}
@@ -57,7 +57,7 @@ function DialogContent({
 				{showCloseButton && (
 					<DialogPrimitive.Close
 						data-slot="dialog-close"
-						className="absolute top-3 right-3 sm:top-4 sm:right-4 rounded-lg p-1 opacity-70 transition-colors hover:bg-white/10 hover:opacity-100 focus:ring-2 focus:ring-terminal-green/30 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 z-10"
+						className="absolute top-3 right-3 sm:top-4 sm:right-4 rounded-lg p-1 opacity-70 transition-colors hover:text-foreground hover:opacity-100 focus:outline-hidden disabled:pointer-events-none [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 z-10"
 					>
 						<XIcon />
 						<span className="sr-only">Close</span>

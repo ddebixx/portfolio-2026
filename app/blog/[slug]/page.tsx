@@ -34,7 +34,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 					<Card className="gap-6 sm:gap-8">
 						<CardContent className="flex flex-col gap-6 sm:gap-8 pt-4 sm:pt-5 pb-4 sm:pb-5">
 							<div className="flex flex-col gap-3">
-								<CardTitle className="text-sm sm:text-base text-foreground">{post.title}</CardTitle>
+								<CardTitle className="text-lg sm:text-xl font-bold tracking-wide text-foreground">
+									{post.title}
+								</CardTitle>
 								<PostMeta
 									datePublished={post.datePublished}
 									readTimeInMinutes={readTimeInMinutes}
@@ -49,7 +51,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 								className="w-full rounded h-48 sm:h-72 object-cover"
 							/>
 							<div
-								className="blog-description text-xs text-muted-foreground/70 leading-relaxed"
+								className="blog-description"
 								dangerouslySetInnerHTML={{ __html: post.content.html }}
 							/>
 							<PostNavigation previousPost={previousPost} nextPost={nextPost} />

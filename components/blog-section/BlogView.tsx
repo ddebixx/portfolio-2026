@@ -1,8 +1,8 @@
-import type { GetPostsQuery } from "@/types/graphql";
+import type { PostSummary } from "@/types/schemas";
 import { BlogPostCard } from "./BlogPostCard";
 
 interface BlogViewProps {
-	posts: GetPostsQuery["posts"];
+	posts: PostSummary[];
 }
 
 export const BlogView = ({ posts }: BlogViewProps) => {

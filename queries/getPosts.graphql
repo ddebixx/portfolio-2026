@@ -4,6 +4,7 @@ query GetPosts {
 		title
 		slug
 		datePublished
+		category
 		coverPhoto {
 			url
 		}

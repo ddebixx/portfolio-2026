@@ -15,6 +15,12 @@ const SCROLL_OFFSET_FROM_TOP = 80;
 
 const sections: Section[] = [
 	{
+		id: "home",
+		label: "Home",
+		description: "Back to the main page",
+		href: "/",
+	},
+	{
 		id: "hero",
 		label: "Hero",
 		description: "Introduction and personal information",

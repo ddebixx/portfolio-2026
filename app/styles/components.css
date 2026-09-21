@@ -20,23 +20,16 @@
 
 .glass-panel {
 	border-radius: 0.75rem;
-	border: 1px solid oklch(1 0 0 / 8%);
-	background: oklch(1 0 0 / 3%);
-	backdrop-filter: blur(16px);
-	-webkit-backdrop-filter: blur(16px);
+	border: 1px solid var(--color-border);
+	background: #000;
 }
 
 .glass-panel-interactive {
-	transition:
-		border-color 0.2s ease,
-		background 0.2s ease,
-		box-shadow 0.2s ease;
+	transition: border-color 0.2s ease;
 }
 
 .glass-panel-interactive:hover {
-	border-color: oklch(1 0 0 / 12%);
-	background: oklch(1 0 0 / 5%);
-	box-shadow: inset 3px 0 0 0 oklch(0.7 0.15 145 / 50%);
+	border-color: oklch(0.7 0.15 145 / 45%);
 }
 
 .terminal-prompt {
@@ -165,11 +158,31 @@
 .experience-description ul,
 .experience-description ol,
 .projects-description ul,
-.projects-description ol,
+.projects-description ol {
+	margin: 0.75rem 0;
+	padding-left: 1.5rem;
+}
+
 .blog-description ul,
 .blog-description ol {
 	margin: 0.75rem 0;
-	padding-left: 1.5rem;
+	padding-left: 1.25rem;
+}
+
+.blog-description ul {
+	list-style-type: disc;
+}
+
+.blog-description ol {
+	list-style-type: decimal;
+}
+
+.blog-description li {
+	display: list-item;
+}
+
+.blog-description li::marker {
+	color: var(--color-foreground);
 }
 
 .experience-description li,
@@ -217,6 +230,69 @@
 	border-left: 2px solid var(--color-border);
 	color: var(--color-muted-foreground);
 	font-style: italic;
+}
+
+.blog-description {
+	font-weight: 400;
+	letter-spacing: 0.01em;
+}
+
+.blog-description p {
+	margin: 0 0 1.1rem 0;
+	font-size: 0.9375rem;
+	font-weight: 400;
+	line-height: 1.85;
+	letter-spacing: 0.012em;
+	color: oklch(0.985 0 0 / 58%);
+}
+
+.blog-description h1,
+.blog-description h2,
+.blog-description h3,
+.blog-description h4,
+.blog-description h5,
+.blog-description h6 {
+	margin: 1.75rem 0 0.65rem 0;
+	font-weight: 700;
+	line-height: 1.35;
+	letter-spacing: 0.04em;
+	color: oklch(0.985 0 0 / 94%);
+}
+
+.blog-description h1 {
+	font-size: 1.35rem;
+}
+
+.blog-description h2 {
+	font-size: 1.2rem;
+}
+
+.blog-description h3 {
+	font-size: 1.05rem;
+}
+
+.blog-description ul,
+.blog-description ol {
+	margin: 0.35rem 0 1.25rem 0;
+}
+
+.blog-description li {
+	margin: 0.4rem 0;
+	font-size: 0.875rem;
+	font-weight: 400;
+	line-height: 1.7;
+	letter-spacing: 0.018em;
+	color: oklch(0.985 0 0 / 42%);
+}
+
+.blog-description li::marker {
+	color: oklch(0.985 0 0 / 72%);
+}
+
+.blog-description strong,
+.blog-description b {
+	font-weight: 700;
+	color: oklch(0.985 0 0 / 82%);
 }
 
 /* ─── Projects-specific button-style anchor overrides ────────────────────── */
@@ -285,10 +361,11 @@ body::before {
 .hero-glow {
 	background-color: #000;
 	background-image: radial-gradient(
-		ellipse 100% 55% at 50% 0%,
+		ellipse 48rem 14rem at 50% 0,
 		oklch(0.7 0.15 145 / 5%) 0%,
-		transparent 65%
+		transparent 70%
 	);
+	background-repeat: no-repeat;
 }
 
 /* ─── Hero name cursor blink ─────────────────────────────────────────────── */

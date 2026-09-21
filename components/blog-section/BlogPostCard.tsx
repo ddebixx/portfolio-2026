@@ -2,12 +2,12 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { PostMeta } from "@/components/blog-section/PostMeta";
 import { Card, CardTitle } from "@/components/ui/card";
-import type { GetPostsQuery } from "@/types/graphql";
+import type { PostSummary } from "@/types/schemas";
 import { calculateReadTimeInMinutes } from "@/utils/calculateReadTimeInMinutes";
 import { getPostExcerpt } from "@/utils/getPostExcerpt";
 
 interface BlogPostCardProps {
-	post: GetPostsQuery["posts"][number];
+	post: PostSummary;
 }
 
 export const BlogPostCard = ({ post }: BlogPostCardProps) => {

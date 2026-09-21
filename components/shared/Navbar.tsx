@@ -35,11 +35,7 @@ export const Navbar = ({ className }: NavbarProps) => {
 				className
 			)}
 		>
-			<div className="relative w-full overflow-hidden rounded-xl border border-white/12 shadow-[0_8px_32px_rgba(0,0,0,0.35)] transition-colors duration-200 focus-within:border-terminal-green/30 focus-within:ring-2 focus-within:ring-terminal-green/20">
-				<div
-					aria-hidden="true"
-					className="pointer-events-none absolute inset-0 z-0 bg-black/30 backdrop-blur-2xl backdrop-saturate-150"
-				/>
+			<div className="relative w-full overflow-hidden rounded-xl border border-white/12 bg-black transition-colors duration-200 focus-within:border-terminal-green/30">
 				<Popover open={open} onOpenChange={setOpen}>
 					<PopoverAnchor asChild>
 						<div className="relative z-10 flex w-full items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 font-mono text-sm">

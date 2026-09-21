@@ -19,6 +19,7 @@ export const PostSummarySchema = z.object({
 	title: z.string(),
 	slug: z.string(),
 	datePublished: z.string(),
+	category: z.string().trim().min(1).nullish(),
 	coverPhoto: z.object({
 		url: z.string().url(),
 	}),
