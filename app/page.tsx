@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { BlogSection } from "@/components/blog-section/BlogSection";
 import { ContactSection } from "@/components/contact-section/ContactSection";
 import { ExperienceSection } from "@/components/experience-section/ExperienceSection";
@@ -14,7 +15,21 @@ import { getProjects } from "@/fetchers/getProjects";
 import { getTechnologies } from "@/fetchers/getTechnologies";
 import { extractImageUrls } from "@/utils/extractImageUrls";
 
-export default async function Home() {
+function HomePageFallback() {
+	return (
+		<>
+			<div className="flex flex-col gap-8 sm:gap-10">
+				<HeroSection author={null} />
+				<BlogSection posts={null} />
+			</div>
+			<ExperienceSection experiences={null} />
+			<ProjectsSection projects={null} />
+			<TechnologiesSection technologies={null} />
+		</>
+	);
+}
+
+async function HomePageContent() {
 	const [author, experiences, projects, technologies, posts] = await Promise.all([
 		getAuthor(),
 		getExperiences(),
@@ -23,19 +38,27 @@ export default async function Home() {
 		getPosts(),
 	]);
 
-	const imageUrls = extractImageUrls(experiences, projects, posts);
+	return (
+		<>
+			<Preloader imageUrls={extractImageUrls(experiences, projects, posts)} />
+			<div className="flex flex-col gap-8 sm:gap-10">
+				<HeroSection author={author || null} />
+				<BlogSection posts={posts} />
+			</div>
+			<ExperienceSection experiences={experiences || null} />
+			<ProjectsSection projects={projects || null} />
+			<TechnologiesSection technologies={technologies || null} />
+		</>
+	);
+}
 
+export default function Home() {
 	return (
 		<PageShell>
 			<PageContent withSectionSpacing>
-				<Preloader imageUrls={imageUrls} />
-				<div className="flex flex-col gap-8 sm:gap-10">
-					<HeroSection author={author || null} />
-					<BlogSection posts={posts} />
-				</div>
-				<ExperienceSection experiences={experiences || null} />
-				<ProjectsSection projects={projects || null} />
-				<TechnologiesSection technologies={technologies || null} />
+				<Suspense fallback={<HomePageFallback />}>
+					<HomePageContent />
+				</Suspense>
 				<ContactSection />
 			</PageContent>
 		</PageShell>

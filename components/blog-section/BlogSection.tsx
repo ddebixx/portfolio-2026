@@ -3,6 +3,7 @@ import Link from "next/link";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { Button } from "@/components/ui/button";
 import { Card, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 import type { PostSummary } from "@/types/schemas";
 import { getPostExcerpt } from "@/utils/getPostExcerpt";
 import {
@@ -16,7 +17,7 @@ import {
 const BLOG_SECTION_EXCERPT_LENGTH = 140;
 
 interface BlogSectionProps {
-	posts: PostSummary[];
+	posts: PostSummary[] | null;
 }
 
 interface BlogSectionPreviewProps {
@@ -35,6 +36,24 @@ function getLatestPost(posts: PostSummary[]): PostSummary | undefined {
 	return posts[0];
 }
 
+const BlogSectionSkeleton = () => {
+	return (
+		<section id="blog" className="flex flex-col gap-4 sm:gap-6 w-full">
+			<Skeleton className="h-5 w-24" />
+			<Skeleton className="h-4 w-full max-w-xl" />
+			<Skeleton className="h-4 w-2/3 max-w-md" />
+			<Skeleton className="h-3 w-28" />
+			<div className="rounded-xl border border-white/10 p-4 sm:p-5 flex flex-col gap-2">
+				<Skeleton className="h-4 w-40" />
+				<Skeleton className="h-3 w-full" />
+				<Skeleton className="h-3 w-full" />
+				<Skeleton className="h-3 w-2/3" />
+			</div>
+			<Skeleton className="h-9 w-full sm:w-32" />
+		</section>
+	);
+};
+
 const BlogSectionPreview = ({ post }: BlogSectionPreviewProps) => {
 	const postExcerpt = getPostExcerpt(post.content.text, BLOG_SECTION_EXCERPT_LENGTH);
 
@@ -51,6 +70,10 @@ const BlogSectionPreview = ({ post }: BlogSectionPreviewProps) => {
 };
 
 export const BlogSection = ({ posts }: BlogSectionProps) => {
+	if (!posts) {
+		return <BlogSectionSkeleton />;
+	}
+
 	const postCount = posts.length;
 	const latestPost = getLatestPost(posts);
 
